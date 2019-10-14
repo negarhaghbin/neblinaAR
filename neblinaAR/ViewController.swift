@@ -14,8 +14,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    @IBOutlet weak var messageView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -24,10 +27,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
         // Set the scene to the view
-        sceneView.scene = scene
+        //sceneView.scene = scene
+        messageView.text="Ready, Set, Go!"
+        messageView.layer.cornerRadius = 15.0
+        
+        showMessage(messageView)
+        
+    }
+    
+    func showMessage(_ messageView:UITextView){
+        self.messageView.isHidden=false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.messageView.isHidden=true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
