@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84A35897241D39BF000AE822 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A35896241D39BE000AE822 /* MainViewController.swift */; };
+		84A3589D241E8720000AE822 /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A35899241E8720000AE822 /* UIButtonX.swift */; };
+		84A3589E241E8720000AE822 /* UILabelX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3589A241E8720000AE822 /* UILabelX.swift */; };
+		84A358A0241E8720000AE822 /* UIButtonX2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3589C241E8720000AE822 /* UIButtonX2.swift */; };
 		84E6EED523539B3B001B00D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EED423539B3B001B00D8 /* AppDelegate.swift */; };
 		84E6EED723539B3B001B00D8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E6EED623539B3B001B00D8 /* art.scnassets */; };
 		84E6EED923539B3B001B00D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EED823539B3B001B00D8 /* ViewController.swift */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84A35896241D39BE000AE822 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		84A35899241E8720000AE822 /* UIButtonX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
+		84A3589A241E8720000AE822 /* UILabelX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelX.swift; sourceTree = "<group>"; };
+		84A3589C241E8720000AE822 /* UIButtonX2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonX2.swift; sourceTree = "<group>"; };
 		84E6EED123539B3B001B00D8 /* neblinaAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neblinaAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6EED423539B3B001B00D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84E6EED623539B3B001B00D8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -37,6 +45,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84A35898241E8720000AE822 /* CollapseMenu Files */ = {
+			isa = PBXGroup;
+			children = (
+				84A35899241E8720000AE822 /* UIButtonX.swift */,
+				84A3589A241E8720000AE822 /* UILabelX.swift */,
+				84A3589C241E8720000AE822 /* UIButtonX2.swift */,
+			);
+			path = "CollapseMenu Files";
+			sourceTree = "<group>";
+		};
+		84A358A1241EA061000AE822 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84E6EED823539B3B001B00D8 /* ViewController.swift */,
+				84A35896241D39BE000AE822 /* MainViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		84E6EEC823539B3B001B00D8 = {
 			isa = PBXGroup;
 			children = (
@@ -56,9 +83,10 @@
 		84E6EED323539B3B001B00D8 /* neblinaAR */ = {
 			isa = PBXGroup;
 			children = (
+				84A358A1241EA061000AE822 /* ViewControllers */,
+				84A35898241E8720000AE822 /* CollapseMenu Files */,
 				84E6EED423539B3B001B00D8 /* AppDelegate.swift */,
 				84E6EED623539B3B001B00D8 /* art.scnassets */,
-				84E6EED823539B3B001B00D8 /* ViewController.swift */,
 				84E6EEDA23539B3B001B00D8 /* Main.storyboard */,
 				84E6EEDD23539B41001B00D8 /* Assets.xcassets */,
 				84E6EEDF23539B41001B00D8 /* LaunchScreen.storyboard */,
@@ -139,8 +167,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A3589D241E8720000AE822 /* UIButtonX.swift in Sources */,
+				84A35897241D39BF000AE822 /* MainViewController.swift in Sources */,
+				84A3589E241E8720000AE822 /* UILabelX.swift in Sources */,
 				84E6EED923539B3B001B00D8 /* ViewController.swift in Sources */,
 				84E6EED523539B3B001B00D8 /* AppDelegate.swift in Sources */,
+				84A358A0241E8720000AE822 /* UIButtonX2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
