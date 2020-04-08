@@ -11,6 +11,16 @@
 		84A3589D241E8720000AE822 /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A35899241E8720000AE822 /* UIButtonX.swift */; };
 		84A3589E241E8720000AE822 /* UILabelX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3589A241E8720000AE822 /* UILabelX.swift */; };
 		84A358A0241E8720000AE822 /* UIButtonX2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3589C241E8720000AE822 /* UIButtonX2.swift */; };
+		84B3AE3E24327DF2008FB6B6 /* SensorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3AE3D24327DF2008FB6B6 /* SensorsTableViewController.swift */; };
+		84B3AE4024350416008FB6B6 /* ControllerNeblinaExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3AE3F24350416008FB6B6 /* ControllerNeblinaExtension.swift */; };
+		84B3AE64243D4D80008FB6B6 /* SensorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3AE63243D4D80008FB6B6 /* SensorsTableViewCell.swift */; };
+		84D2C118243178D80006956E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D2C117243178D80006956E /* CoreBluetooth.framework */; };
+		84D2C12E243179B00006956E /* Neblina.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2C11F243179B00006956E /* Neblina.swift */; };
+		84D2C12F243179B00006956E /* CGContext+GraphLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2C120243179B00006956E /* CGContext+GraphLines.swift */; };
+		84D2C131243179B00006956E /* NeblinaControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2C127243179B00006956E /* NeblinaControl.swift */; };
+		84D5131E243D58B70012D52D /* SensorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5131D243D58B70012D52D /* SensorDetailViewController.swift */; };
+		84E34F712423C0910038C65D /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E34F702423C0910038C65D /* APIRequest.swift */; };
+		84E34F742423C1950038C65D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E34F732423C1950038C65D /* Message.swift */; };
 		84E6EED523539B3B001B00D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EED423539B3B001B00D8 /* AppDelegate.swift */; };
 		84E6EED723539B3B001B00D8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E6EED623539B3B001B00D8 /* art.scnassets */; };
 		84E6EED923539B3B001B00D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EED823539B3B001B00D8 /* ViewController.swift */; };
@@ -24,6 +34,30 @@
 		84A35899241E8720000AE822 /* UIButtonX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
 		84A3589A241E8720000AE822 /* UILabelX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelX.swift; sourceTree = "<group>"; };
 		84A3589C241E8720000AE822 /* UIButtonX2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonX2.swift; sourceTree = "<group>"; };
+		84B3AE3D24327DF2008FB6B6 /* SensorsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsTableViewController.swift; sourceTree = "<group>"; };
+		84B3AE3F24350416008FB6B6 /* ControllerNeblinaExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerNeblinaExtension.swift; sourceTree = "<group>"; };
+		84B3AE63243D4D80008FB6B6 /* SensorsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsTableViewCell.swift; sourceTree = "<group>"; };
+		84D2C117243178D80006956E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		84D2C11A243179B00006956E /* neblina_sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_sensor.h; sourceTree = "<group>"; };
+		84D2C11B243179B00006956E /* neblina_eeprom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_eeprom.h; sourceTree = "<group>"; };
+		84D2C11D243179B00006956E /* neblina_fusion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_fusion.h; sourceTree = "<group>"; };
+		84D2C11E243179B00006956E /* neblinaFusion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblinaFusion.h; sourceTree = "<group>"; };
+		84D2C11F243179B00006956E /* Neblina.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Neblina.swift; sourceTree = "<group>"; };
+		84D2C120243179B00006956E /* CGContext+GraphLines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGContext+GraphLines.swift"; sourceTree = "<group>"; };
+		84D2C121243179B00006956E /* neblina_general.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_general.h; sourceTree = "<group>"; };
+		84D2C123243179B00006956E /* Neblina-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Neblina-Bridging-Header.h"; sourceTree = "<group>"; };
+		84D2C124243179B00006956E /* neblina_recorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_recorder.h; sourceTree = "<group>"; };
+		84D2C125243179B00006956E /* neblina_fusion_utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_fusion_utilities.h; sourceTree = "<group>"; };
+		84D2C126243179B00006956E /* neblina_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_common.h; sourceTree = "<group>"; };
+		84D2C127243179B00006956E /* NeblinaControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeblinaControl.swift; sourceTree = "<group>"; };
+		84D2C128243179B00006956E /* neblina_led.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_led.h; sourceTree = "<group>"; };
+		84D2C129243179B00006956E /* neblina_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_debug.h; sourceTree = "<group>"; };
+		84D2C12A243179B00006956E /* neblina_utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_utilities.h; sourceTree = "<group>"; };
+		84D2C12B243179B00006956E /* neblina.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina.h; sourceTree = "<group>"; };
+		84D2C12C243179B00006956E /* neblina_power.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_power.h; sourceTree = "<group>"; };
+		84D5131D243D58B70012D52D /* SensorDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorDetailViewController.swift; sourceTree = "<group>"; };
+		84E34F702423C0910038C65D /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		84E34F732423C1950038C65D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		84E6EED123539B3B001B00D8 /* neblinaAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neblinaAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6EED423539B3B001B00D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84E6EED623539B3B001B00D8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -39,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D2C118243178D80006956E /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,10 +93,61 @@
 		84A358A1241EA061000AE822 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84D5131D243D58B70012D52D /* SensorDetailViewController.swift */,
 				84E6EED823539B3B001B00D8 /* ViewController.swift */,
 				84A35896241D39BE000AE822 /* MainViewController.swift */,
+				84B3AE3D24327DF2008FB6B6 /* SensorsTableViewController.swift */,
+				84B3AE3F24350416008FB6B6 /* ControllerNeblinaExtension.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		84A358A2242153E6000AE822 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				84E34F702423C0910038C65D /* APIRequest.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		84D2C116243178D80006956E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84D2C117243178D80006956E /* CoreBluetooth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84D2C119243179B00006956E /* Neblina files */ = {
+			isa = PBXGroup;
+			children = (
+				84D2C11A243179B00006956E /* neblina_sensor.h */,
+				84D2C11B243179B00006956E /* neblina_eeprom.h */,
+				84D2C11D243179B00006956E /* neblina_fusion.h */,
+				84D2C11E243179B00006956E /* neblinaFusion.h */,
+				84D2C11F243179B00006956E /* Neblina.swift */,
+				84D2C120243179B00006956E /* CGContext+GraphLines.swift */,
+				84D2C121243179B00006956E /* neblina_general.h */,
+				84D2C123243179B00006956E /* Neblina-Bridging-Header.h */,
+				84D2C124243179B00006956E /* neblina_recorder.h */,
+				84D2C125243179B00006956E /* neblina_fusion_utilities.h */,
+				84D2C126243179B00006956E /* neblina_common.h */,
+				84D2C127243179B00006956E /* NeblinaControl.swift */,
+				84D2C128243179B00006956E /* neblina_led.h */,
+				84D2C129243179B00006956E /* neblina_debug.h */,
+				84D2C12A243179B00006956E /* neblina_utilities.h */,
+				84D2C12B243179B00006956E /* neblina.h */,
+				84D2C12C243179B00006956E /* neblina_power.h */,
+			);
+			path = "Neblina files";
+			sourceTree = "<group>";
+		};
+		84E34F722423C1760038C65D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84E34F732423C1950038C65D /* Message.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		84E6EEC823539B3B001B00D8 = {
@@ -69,6 +155,7 @@
 			children = (
 				84E6EED323539B3B001B00D8 /* neblinaAR */,
 				84E6EED223539B3B001B00D8 /* Products */,
+				84D2C116243178D80006956E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +170,9 @@
 		84E6EED323539B3B001B00D8 /* neblinaAR */ = {
 			isa = PBXGroup;
 			children = (
+				84D2C119243179B00006956E /* Neblina files */,
+				84E34F722423C1760038C65D /* Model */,
+				84A358A2242153E6000AE822 /* Networking */,
 				84A358A1241EA061000AE822 /* ViewControllers */,
 				84A35898241E8720000AE822 /* CollapseMenu Files */,
 				84E6EED423539B3B001B00D8 /* AppDelegate.swift */,
@@ -91,6 +181,7 @@
 				84E6EEDD23539B41001B00D8 /* Assets.xcassets */,
 				84E6EEDF23539B41001B00D8 /* LaunchScreen.storyboard */,
 				84E6EEE223539B41001B00D8 /* Info.plist */,
+				84B3AE63243D4D80008FB6B6 /* SensorsTableViewCell.swift */,
 			);
 			path = neblinaAR;
 			sourceTree = "<group>";
@@ -167,12 +258,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D2C131243179B00006956E /* NeblinaControl.swift in Sources */,
 				84A3589D241E8720000AE822 /* UIButtonX.swift in Sources */,
+				84B3AE4024350416008FB6B6 /* ControllerNeblinaExtension.swift in Sources */,
+				84E34F712423C0910038C65D /* APIRequest.swift in Sources */,
+				84D2C12F243179B00006956E /* CGContext+GraphLines.swift in Sources */,
 				84A35897241D39BF000AE822 /* MainViewController.swift in Sources */,
+				84D5131E243D58B70012D52D /* SensorDetailViewController.swift in Sources */,
 				84A3589E241E8720000AE822 /* UILabelX.swift in Sources */,
+				84D2C12E243179B00006956E /* Neblina.swift in Sources */,
+				84B3AE3E24327DF2008FB6B6 /* SensorsTableViewController.swift in Sources */,
 				84E6EED923539B3B001B00D8 /* ViewController.swift in Sources */,
+				84E34F742423C1950038C65D /* Message.swift in Sources */,
 				84E6EED523539B3B001B00D8 /* AppDelegate.swift in Sources */,
 				84A358A0241E8720000AE822 /* UIButtonX2.swift in Sources */,
+				84B3AE64243D4D80008FB6B6 /* SensorsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ADDRESS_SANITIZER_CONTAINER_OVERFLOW = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BH49U8WFP;
 				INFOPLIST_FILE = neblinaAR/Info.plist;
@@ -325,6 +426,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.negar.neblinaAR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "neblinaAR/Neblina files/Neblina-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -334,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ADDRESS_SANITIZER_CONTAINER_OVERFLOW = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BH49U8WFP;
 				INFOPLIST_FILE = neblinaAR/Info.plist;
@@ -343,6 +446,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.negar.neblinaAR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "neblinaAR/Neblina files/Neblina-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

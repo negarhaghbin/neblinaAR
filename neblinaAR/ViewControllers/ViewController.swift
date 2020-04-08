@@ -11,7 +11,42 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
+    
+    var nebdev : Neblina? {
+               didSet {
+                   nebdev!.delegate = self
+               }
+           }
 
+           let sceneShip = SCNScene(named: "art.scnassets/ship.scn")!
+           var scene : SCNScene?
+           var ship : SCNNode!
+           let max_count = Int16(15)
+           var prevTimeStamp = UInt32(0)
+           var cnt = Int16(15)
+           var xf = Int16(0)
+           var yf = Int16(0)
+           var zf = Int16(0)
+           var heading = Bool(false)
+           var flashEraseProgress = Bool(false)
+           var PaketCnt = UInt32(0)
+           var dropCnt = UInt32(0)
+           var curSessionId = UInt16(0)
+           var curSessionOffset = UInt32(0)
+           var sessionCount = UInt8(0)
+           var startDownload = Bool(false)
+           var filepath = String()
+           var file : FileHandle?
+           var downloadRecovering = Bool(false)
+           var playback = Bool(false)
+           var badTimestampCnt = Int(0)
+           var dubTimestampCnt = Int(0)
+           var prevPacket = NeblinaFusionPacket_t();
+       
+    
+    
+    var timer = Timer()
+    
     @IBOutlet var sceneView: ARSCNView!
     
     @IBOutlet weak var messageView: UITextView!
@@ -32,15 +67,35 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         
         // Create a new scene
-        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        //let sceneShip = SCNScene(named: "art.scnassets/ship.scn")!
         
         // Set the scene to the view
-        //sceneView.scene = scene
+        //sceneView.scene = sceneShip
         messageView.text="Ready, Set, Go!"
         messageView.layer.cornerRadius = 15.0
         let deadSpace = messageView.bounds.size.height - messageView.contentSize.height
         let inset = max(0, deadSpace/2.0)
         messageView.contentInset = UIEdgeInsets(top: inset, left: messageView.contentInset.left, bottom: inset, right: messageView.contentInset.right)
+        // MARK: code e jadid
+        nebdev!.streamEulerAngle(false)
+        heading = false
+        prevTimeStamp = 0
+        nebdev!.streamQuaternion(true)
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { timer in
+            let message = Message(message: "you have a new message!")
+            let postRequest = APIRequest(endpoint: "messages")
+            postRequest.save(message, completion: {
+                result in
+                switch result{
+                case .success(let message):
+                    print("the following message has been sent: \(message.message)")
+                
+                case .failure(let error):
+                    print("An error occured: \(error)")
+                }
+            })
+        }
         
         
     }
@@ -52,6 +107,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             action in
              //UIApplication.shared.isIdleTimerDisabled = false
             self.dismiss(animated: true, completion: nil)
+            _ = self.navigationController?.popViewController(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: {
             action in
@@ -61,7 +117,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func showMessage(_ messageView:UITextView){
         self.messageView.isHidden=false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30.0) {
             self.messageView.isHidden=true
         }
     }
@@ -87,6 +143,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         self.soundButton.alpha = 0
         self.cancelButton.alpha = 0
         print("here")
+        navigationController?.setNavigationBarHidden(true, animated: false)
         //self.fourthButton.alpha = 0
     }
     
