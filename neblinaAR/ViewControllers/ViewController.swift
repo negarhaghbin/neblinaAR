@@ -7,101 +7,100 @@
 //
 
 import UIKit
-import SceneKit
-import ARKit
+import SpriteKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController{
     
     var nebdev : Neblina? {
-               didSet {
-                   nebdev!.delegate = self
-               }
-           }
-
-           let sceneShip = SCNScene(named: "art.scnassets/ship.scn")!
-           var scene : SCNScene?
-           var ship : SCNNode!
-           let max_count = Int16(15)
-           var prevTimeStamp = UInt32(0)
-           var cnt = Int16(15)
-           var xf = Int16(0)
-           var yf = Int16(0)
-           var zf = Int16(0)
-           var heading = Bool(false)
-           var flashEraseProgress = Bool(false)
-           var PaketCnt = UInt32(0)
-           var dropCnt = UInt32(0)
-           var curSessionId = UInt16(0)
-           var curSessionOffset = UInt32(0)
-           var sessionCount = UInt8(0)
-           var startDownload = Bool(false)
-           var filepath = String()
-           var file : FileHandle?
-           var downloadRecovering = Bool(false)
-           var playback = Bool(false)
-           var badTimestampCnt = Int(0)
-           var dubTimestampCnt = Int(0)
-           var prevPacket = NeblinaFusionPacket_t();
-       
+        didSet {
+            nebdev!.delegate = self
+        }
+    }
     
+    @IBOutlet weak var scoreLabel: UILabel!
+
+    var scene = SKScene()
+    let max_count = Int16(15)
+    var prevTimeStamp = UInt32(0)
+    var cnt = Int16(15)
+    var xf = Int16(0)
+    var yf = Int16(0)
+    var zf = Int16(0)
+    var heading = Bool(false)
+    var flashEraseProgress = Bool(false)
+    var PaketCnt = UInt32(0)
+    var dropCnt = UInt32(0)
+    var curSessionId = UInt16(0)
+    var curSessionOffset = UInt32(0)
+    var sessionCount = UInt8(0)
+    var startDownload = Bool(false)
+    var filepath = String()
+    var file : FileHandle?
+    var downloadRecovering = Bool(false)
+    var playback = Bool(false)
+    var badTimestampCnt = Int(0)
+    var dubTimestampCnt = Int(0)
+    var prevPacket = NeblinaFusionPacket_t();
+    var x_array = Array(repeating: 0, count: 20)
+    var x_average = 0
+    var x_array_iterator = 0
     
     var timer = Timer()
+    var sensorData = (Float(0.0),Float(0.0),Float(0.0),Float(0.0))
     
-    @IBOutlet var sceneView: ARSCNView!
-    
-    @IBOutlet weak var messageView: UITextView!
-    
+//    @IBOutlet weak var messageView: UITextView!
     @IBOutlet weak var mainButton: UIButtonX!
     @IBOutlet weak var cancelButton: UIButtonX2!
     @IBOutlet weak var soundButton: UIButtonX2!
-    //@IBOutlet weak var fourthButton: UIButtonX2!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         
-        // Set the view's delegate
-        sceneView.delegate = self
+        scene = GameScene(fileNamed:"GameScene")!
+        let skView = self.view as! SKView
+        skView.showsFPS = true
+        skView.showsNodeCount = true
+        skView.ignoresSiblingOrder = true
+        scene.scaleMode = .aspectFill
+        scene.size = view.bounds.size
         
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+        // MARK: Message
+//        messageView.text="Ready, Set, Go!"
+//        messageView.layer.cornerRadius = 15.0
+//        let deadSpace = messageView.bounds.size.height - messageView.contentSize.height
+//        let inset = max(0, deadSpace/2.0)
+//        messageView.contentInset = UIEdgeInsets(top: inset, left: messageView.contentInset.left, bottom: inset, right: messageView.contentInset.right)
         
-        // Create a new scene
-        //let sceneShip = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        //sceneView.scene = sceneShip
-        messageView.text="Ready, Set, Go!"
-        messageView.layer.cornerRadius = 15.0
-        let deadSpace = messageView.bounds.size.height - messageView.contentSize.height
-        let inset = max(0, deadSpace/2.0)
-        messageView.contentInset = UIEdgeInsets(top: inset, left: messageView.contentInset.left, bottom: inset, right: messageView.contentInset.right)
         // MARK: code e jadid
+        //for external force uncomment it
+//        nebdev!.streamMotionState(false)
+//        nebdev!.streamExternalForce(true)
+//        nebdev!.streamEulerAngle(false)
+//        heading = false
+//        prevTimeStamp = 0
+//        nebdev!.streamQuaternion(false)
+        
+        //for Quaternion uncomment it
+        /*
         nebdev!.streamEulerAngle(false)
         heading = false
         prevTimeStamp = 0
-        nebdev!.streamQuaternion(true)
+        nebdev!.streamQuaternion(true)*/
         
-        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { timer in
-            let message = Message(message: "you have a new message!")
-            let postRequest = APIRequest(endpoint: "messages")
-            postRequest.save(message, completion: {
-                result in
-                switch result{
-                case .success(let message):
-                    print("the following message has been sent: \(message.message)")
-                
-                case .failure(let error):
-                    print("An error occured: \(error)")
-                }
-            })
-        }
+        //for Acc uncomment it
+//        nebdev!.sensorStreamAccelData(true)
+        
+        //for yaw uncomment it
+        nebdev!.streamQuaternion(false)
+        nebdev!.streamEulerAngle(true)
         
         
+        
+        skView.presentScene(scene)
     }
     
     @IBAction func quit(_ sender: Any) {
-        let alert = UIAlertController(title: "Do you want to finish workout?", message: "It will exit this session and your progress will be lost.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Do you want to quit?", message: "It will exit this session and your progress will be lost.", preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {
             action in
@@ -115,22 +114,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         self.present(alert, animated: true)
     }
     
-    func showMessage(_ messageView:UITextView){
-        self.messageView.isHidden=false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30.0) {
-            self.messageView.isHidden=true
-        }
-    }
+//    func showMessage(_ messageView:UITextView){
+//        self.messageView.isHidden=false
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 30.0) {
+//            self.messageView.isHidden=true
+//        }
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-
-        // Run the view's session
-        sceneView.session.run(configuration)
-        showMessage(messageView)
+//        showMessage(messageView)
         
         self.mainButton.imageView?.contentMode = .center
         self.mainButton.imageView?.clipsToBounds = false
@@ -142,21 +136,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         self.soundButton.alpha = 0
         self.cancelButton.alpha = 0
-        print("here")
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
         //self.fourthButton.alpha = 0
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Pause the view's session
-        sceneView.session.pause()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        
-        
     }
     
     /**
@@ -213,31 +195,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
         }
     }
-
-
-    // MARK: - ARSCNViewDelegate
-    
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
 }
+
+

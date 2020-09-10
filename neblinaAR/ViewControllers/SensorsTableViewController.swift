@@ -11,15 +11,15 @@ import CoreBluetooth
 
 var bleCentralManager : CBCentralManager!
 
-class SensorsTableViewController: UITableViewController, CBCentralManagerDelegate {
+class SensorsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CBCentralManagerDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
     var detailViewController: UIViewController? = nil
     var objects = [Neblina]()
     var selectedSensors = [Neblina]()
     var prepareStart = false
 
     @IBOutlet weak var startButton : UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +34,6 @@ class SensorsTableViewController: UITableViewController, CBCentralManagerDelegat
         }
     }
 
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-
     @IBAction func insertRefreshScan(_ sender: Any) {
         bleCentralManager.stopScan()
         objects.removeAll()
@@ -46,48 +41,32 @@ class SensorsTableViewController: UITableViewController, CBCentralManagerDelegat
     }
 
     // MARK: - Segues
-    
-//    @IBAction func sensorValueChanged(_ sender: UISwitch) {
-//        if(sender.isOn){
-//            let controller = (segue.destination as! UINavigationController).topViewController as! ViewController
-//            if (controller.nebdev != nil) {
-//                bleCentralManager.cancelPeripheralConnection(controller.nebdev!.device)
-//            }
-//            controller.nebdev = object
-//            bleCentralManager.connect(object.device, options: nil)
-//        }
-//    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("Segue \(String(describing: segue.identifier))")
         if segue.identifier == "showAR" {
-            for obj in selectedSensors {
-                if (obj.name != ""){
-                    let object = obj
-                    let controller = segue.destination as! ViewController
-                    if (controller.nebdev != nil) {
-                        bleCentralManager.cancelPeripheralConnection(controller.nebdev!.device)
-                    }
-                    controller.nebdev = object
-                    bleCentralManager.connect(object.device, options: nil)
-                    break //FOR NOW ONLY
+            if (selectedSensors[0].name != ""){
+                let object = selectedSensors[0]
+                let controller = segue.destination as! ViewController
+                if (controller.nebdev != nil) {
+                    bleCentralManager.cancelPeripheralConnection(controller.nebdev!.device)
                 }
-                
+                controller.nebdev = object
+                bleCentralManager.connect(object.device, options: nil)
             }
         }
     }
 
         // MARK: - Table View
 
-        override func numberOfSections(in tableView: UITableView) -> Int {
+        func numberOfSections(in tableView: UITableView) -> Int {
             return 1
         }
 
-        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return objects.count
         }
 
-        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SensorsTableViewCell
             
             if(prepareStart){
@@ -96,6 +75,8 @@ class SensorsTableViewController: UITableViewController, CBCentralManagerDelegat
             }
             let object = objects[indexPath.row]
             cell.textLabel!.text = object.device.name
+            cell.textLabel?.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            cell.textLabel?.font = UIFont(name: "ARCADECLASSIC", size: 20)
             print("\(cell.textLabel!.text ?? "no text label")")
             cell.textLabel!.text = object.device.name! + String(format: "_%lX", object.id)
             print("Cell Name : \(cell.textLabel!.text ?? "no cell name")")
@@ -106,7 +87,7 @@ class SensorsTableViewController: UITableViewController, CBCentralManagerDelegat
             return cell
         }
     
-        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             if(!prepareStart){
                 if let vc = navigationController {
                     let storyBoard = UIStoryboard(name: "Main", bundle:nil)
@@ -117,9 +98,6 @@ class SensorsTableViewController: UITableViewController, CBCentralManagerDelegat
             }
         }
     @IBAction func addRemoveSensor(_ sender: UISwitch!) {
-        print(objects)
-        print(selectedSensors)
-        print(sender.tag)
         if(sender.isOn){
             selectedSensors[sender.tag] = objects[sender.tag]
         }
@@ -127,15 +105,6 @@ class SensorsTableViewController: UITableViewController, CBCentralManagerDelegat
             selectedSensors[sender.tag] = Neblina(devName: "", devid: 0, peripheral: nil)
         }
     }
-
-//        override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//            if editingStyle == .delete {
-//                objects.remove(at: (indexPath as NSIndexPath).row)
-//                tableView.deleteRows(at: [indexPath], with: .fade)
-//            } else if editingStyle == .insert {
-//                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-//            }
-//        }
 
         // MARK: - Bluetooth
         func centralManager(_ central: CBCentralManager,
@@ -187,8 +156,6 @@ class SensorsTableViewController: UITableViewController, CBCentralManagerDelegat
             central.stopScan()
             peripheral.discoverServices(nil)
             print("Connected to peripheral")
-            
-            
         }
         
         func centralManager(_ central: CBCentralManager,

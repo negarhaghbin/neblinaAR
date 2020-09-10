@@ -38,6 +38,10 @@
 		<string>armv7</string>
 		<string>arkit</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ARCADECLASSIC.TTF</string>
+	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>

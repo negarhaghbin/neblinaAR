@@ -11,6 +11,7 @@ import CoreBluetooth
 import QuartzCore
 import GLKit
 import SceneKit
+import SpriteKit
 
 let MotionDataStream = Int32(1)
 let Heading = Int32(2)
@@ -174,7 +175,18 @@ extension ViewController: NeblinaDelegate{
                 let yrot = Float(y) / 10.0
                 let z = (Int16(data.data.4) & 0xff) | (Int16(data.data.5) << 8)
                 let zrot = Float(z) / 10.0
-                
+                if (heading) {
+                    print("headingggg")
+                    player.zRotation = CGFloat(GLKMathDegreesToRadians(180) - GLKMathDegreesToRadians(xrot))
+                }
+                else {
+                    let new_pos = CGFloat(xrot)*11
+                    if ( new_pos + player.size.width/2 < UIScreen.main.bounds.size.width/2 && new_pos - player.size.width/2 > -UIScreen.main.bounds.size.width/2){
+                        player.position.x = new_pos
+                    }
+                    
+//                    player.eulerAngles = SCNVector3Make(GLKMathDegreesToRadians(180) - GLKMathDegreesToRadians(yrot), GLKMathDegreesToRadians(xrot), GLKMathDegreesToRadians(180) - GLKMathDegreesToRadians(zrot))
+                }
             
                 break
             case NEBLINA_COMMAND_FUSION_QUATERNION_STREAM:
@@ -190,7 +202,9 @@ extension ViewController: NeblinaDelegate{
                 let zq = Float(z) / 32768.0
                 let w = (Int16(data.data.6) & 0xff) | (Int16(data.data.7) << 8)//z
                 let wq = Float(w) / 32768.0
-                messageView.text=String("Quat - w:\(xq), x:\(yq), y:\(zq), z:\(wq)")
+//                player.zRotation = CGFloat(-zq)
+//                print("#####Q######")
+                sensorData = (xq, yq, zq, wq)
                 if (prevTimeStamp == data.timestamp)
                 {
                     var diff = Bool(false)
@@ -276,6 +290,26 @@ extension ViewController: NeblinaDelegate{
                         yf += yq
                         zf += zq
                 }
+//                print("#####external force######\(x)")
+                
+//                if x > 15 || x < -15{
+//                    x_average = ((x_average * x_array.count) - x_array[x_array_iterator] + Int(x))/x_array.count
+//                    x_array[x_array_iterator] = Int(x)
+//                    x_array_iterator += 1
+//                    if (x_array_iterator == x_array.count){
+//                        x_array_iterator = 0
+//                    }
+//                print(x_array_iterator)
+//                    print("\(x_average)")
+//                    let new_pos = player.position.x + CGFloat(Double(x_average)/10.0)
+//                    let right_side_of_screen = UIScreen.main.bounds.size.width
+//                    if (new_pos<right_side_of_screen && new_pos>player.size.width/2){
+                        //player.position.x = new_pos
+//                }
+//            }
+
+                
+//                player.physicsBody?.applyForce(CGVector(dx: CGFloat(xf), dy: CGFloat(0.0)))
                 break
             case NEBLINA_COMMAND_FUSION_PEDOMETER_STREAM:
                 _ = data.data.9;
@@ -406,11 +440,20 @@ extension ViewController: NeblinaDelegate{
             switch (cmdRspId) {
             case NEBLINA_COMMAND_SENSOR_ACCELEROMETER_STREAM:
                 let x = (Int16(data[4]) & 0xff) | (Int16(data[5]) << 8)
-                _ = x
+                let xq = x
                 let y = (Int16(data[6]) & 0xff) | (Int16(data[7]) << 8)
-                _ = y
+                let yq = y
                 let z = (Int16(data[8]) & 0xff) | (Int16(data[9]) << 8)
-                _ = z
+                let zq = z
+                
+//                if xq != 0 {
+//                    print("Accel - x:\(yq)")
+//                }
+//                if (yq > 50 || yq < -50){
+//                    player.position.x = player.position.x + CGFloat(Double(zq)/10.0)
+//                }
+                
+                
                 break
             case NEBLINA_COMMAND_SENSOR_GYROSCOPE_STREAM:
                 let x = (Int16(data[4]) & 0xff) | (Int16(data[5]) << 8)

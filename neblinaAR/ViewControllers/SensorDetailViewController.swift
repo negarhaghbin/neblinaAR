@@ -31,58 +31,6 @@ class SensorDetailViewController: UITableViewController {
         
         override func viewDidLoad() {
             super.viewDidLoad()
-//            cnt = max_count
-//            scene = sceneShip
-//
-//            let cameraNode = SCNNode()
-//            cameraNode.camera = SCNCamera()
-//
-//            let cameraNode1 = SCNNode()
-//            sceneShip.rootNode.addChildNode(cameraNode1)
-//
-//            // place the camera
-//            cameraNode.position = SCNVector3(x: 0, y: 0, z:20)
-//            cameraNode1.position = SCNVector3(x: 0, y: 0, z:20)
-//            let lightNode = SCNNode()
-//            lightNode.light = SCNLight()
-//            lightNode.light!.type = SCNLight.LightType.omni
-//            lightNode.position = SCNVector3(x: 0, y: 10, z: 50)
-//
-//            let lightNode1 = SCNNode()
-//            lightNode1.light = SCNLight()
-//            lightNode1.light!.type = SCNLight.LightType.omni
-//            lightNode1.position = SCNVector3(x: 0, y: 10, z: 50)
-//            sceneShip.rootNode.addChildNode(lightNode1)
-//
-//            // create and add an ambient light to the scene
-//            let ambientLightNode = SCNNode()
-//            ambientLightNode.light = SCNLight()
-//            ambientLightNode.light!.type = SCNLight.LightType.ambient
-//            ambientLightNode.light!.color = UIColor.darkGray
-//
-//            let ambientLightNode1 = SCNNode()
-//            ambientLightNode1.light = SCNLight()
-//            ambientLightNode1.light!.type = SCNLight.LightType.ambient
-//            ambientLightNode1.light!.color = UIColor.darkGray
-//            sceneShip.rootNode.addChildNode(ambientLightNode1)
-//
-//
-//            ship = scene?.rootNode.childNode(withName: "ship", recursively: true)!
-//
-//            ship.eulerAngles = SCNVector3Make(GLKMathDegreesToRadians(90), 0, GLKMathDegreesToRadians(180))
-//
-//            let scnView = self.view.subviews[0] as! SCNView
-//
-//            // set the scene to the view
-//            scnView.scene = scene
-//
-//            // allows the user to manipulate the camera
-//            scnView.allowsCameraControl = true
-//
-//            // show statistics such as fps and timing information
-//            scnView.showsStatistics = true
-//
-//            //scnView.preferredFramesPerSecond = 60
             
         }
             
