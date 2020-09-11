@@ -28,14 +28,16 @@ class GameScene: SKScene {
         let blockChildren = self.children.filter({$0.name == "block"})
         for block in blockChildren{
             block.physicsBody?.contactTestBitMask = block.physicsBody?.collisionBitMask ?? 0
-            block.position.y = (self.frame.height/2) - 100
+            //block.position.y = (self.frame.height/2) - 100
             blocks.append(block as! SKSpriteNode)
         }
         
         ball = self.childNode(withName: "ball") as! SKSpriteNode
         ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
         ball.physicsBody?.applyImpulse(CGVector(dx: 20, dy: -20))
-        ball.position = CGPoint(x: blocks[0].position.x, y: blocks[0].position.y - blocks[0].size.height) 
+        var blocks_by_lowest_y = blockChildren
+        blocks_by_lowest_y = blocks_by_lowest_y.sorted(by: {$0.position.y < $1.position.y})
+        ball.position = CGPoint(x: 0, y: blocks_by_lowest_y[0].position.y - blocks[0].size.height)
         
         scoreLbl = self.childNode(withName: "scoreLabel") as! SKLabelNode
         scoreLbl.position = CGPoint(x: (-self.frame.width/2) + 50, y: (self.frame.height/2) - 100)
