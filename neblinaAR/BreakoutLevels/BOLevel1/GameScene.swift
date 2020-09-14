@@ -11,6 +11,7 @@ import GameplayKit
 
 var player = SKSpriteNode()
 var score = 0
+var currentLevel = LevelSceneNames.level1.rawValue
 
 class GameScene: SKScene {
     
@@ -18,6 +19,8 @@ class GameScene: SKScene {
     var ball = SKSpriteNode()
     var scoreLbl = SKLabelNode()
     var resultsLbl = SKLabelNode()
+    let nextLevelButton = SKButton()
+    let addImpulseButton = SKButton()
     
     override func didMove(to view: SKView) {
         startGame()
@@ -34,7 +37,7 @@ class GameScene: SKScene {
         
         ball = self.childNode(withName: "ball") as! SKSpriteNode
         ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-        ball.physicsBody?.applyImpulse(CGVector(dx: 20, dy: -20))
+        ball.physicsBody?.applyImpulse(CGVector(dx: 22, dy: -22))
         var blocks_by_lowest_y = blockChildren
         blocks_by_lowest_y = blocks_by_lowest_y.sorted(by: {$0.position.y < $1.position.y})
         ball.position = CGPoint(x: 0, y: blocks_by_lowest_y[0].position.y - blocks[0].size.height)
@@ -46,6 +49,24 @@ class GameScene: SKScene {
         resultsLbl.position = CGPoint(x: 0, y: 0)
         resultsLbl.isHidden = true
         
+        nextLevelButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(GameScene.goNextLevel))
+        nextLevelButton.setButtonLabel(title: "Next Level", font: "ARCADECLASSIC", fontSize: 30)
+        nextLevelButton.color = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        nextLevelButton.label.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        nextLevelButton.position = CGPoint(x: resultsLbl.position.x,y: resultsLbl.position.y - 2*resultsLbl.frame.height)
+        nextLevelButton.zPosition = 1
+        nextLevelButton.name = "nextLevelButton"
+        nextLevelButton.isHidden = true
+        self.addChild(nextLevelButton)
+        
+        addImpulseButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(GameScene.addImpulse))
+        addImpulseButton.setButtonLabel(title: "Shake", font: "ARCADECLASSIC", fontSize: 25)
+        addImpulseButton.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+        addImpulseButton.position = CGPoint(x: (self.frame.width/2) - 50, y: (self.frame.height/2) - 75)
+        addImpulseButton.zPosition = 1
+        addImpulseButton.name = "addImpulseButton"
+        self.addChild(addImpulseButton)
+        
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         border.friction = 0
         border.restitution = 1
@@ -53,7 +74,30 @@ class GameScene: SKScene {
         
         physicsWorld.contactDelegate = self
     }
+    
+    func nextLevel()->String{
+        var level = Int(String(currentLevel.last!))
+        level = level! + 1
+        return "BOLevel\(level ?? 1)"
+    }
   
+    @objc func goNextLevel() {
+        var scene = SKScene()
+        switch nextLevelButton.label.text {
+        case "Next Level":
+            scene = GameScene(fileNamed:nextLevel())!
+            break
+        case "Try Again":
+            scene = GameScene(fileNamed:currentLevel)!
+        default:
+            break
+        }
+        self.view?.presentScene(scene)
+    }
+    
+    @objc func addImpulse() {
+        ball.physicsBody?.applyImpulse(CGVector(dx: 5, dy: -5))
+    }
   
     func startGame(){
         score = 0
@@ -90,9 +134,10 @@ class GameScene: SKScene {
         }
     }
     
+    
     override func update(_ currentTime: TimeInterval) {
-        if ball.position.y < player.position.y{
-            finishGame(result: "You Lose!")
+        if ball.position.y < player.position.y - player.size.height / 2{
+            finishGame(result: "You Lost!")
         }
     }
     
@@ -102,7 +147,18 @@ class GameScene: SKScene {
         physicsWorld.speed = 0
         resultsLbl.text = result
         resultsLbl.isHidden = false
+        if result == "You Lost!"{
+            nextLevelButton.isHidden = false
+            nextLevelButton.label.text = "Try Again"
+        }
+        else{
+            if currentLevel != LevelSceneNames.level6.rawValue{
+                nextLevelButton.isHidden = false
+                nextLevelButton.label.text = "Next Level"
+            }
+        }
     }
+    
 }
 
 extension GameScene: SKPhysicsContactDelegate {
@@ -118,4 +174,5 @@ extension GameScene: SKPhysicsContactDelegate {
         ballDidCollideWithBlock(ball: nodeB as! SKSpriteNode, block: nodeA as! SKSpriteNode)
     }
   }
+    
 }
