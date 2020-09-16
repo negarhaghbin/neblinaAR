@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+import AVFoundation
 
 class ViewController: UIViewController{
     
@@ -48,6 +49,8 @@ class ViewController: UIViewController{
     var timer = Timer()
     var sensorData = (Float(0.0),Float(0.0),Float(0.0),Float(0.0))
     
+    var audioPlayer = AVAudioPlayer()
+    
 //    @IBOutlet weak var messageView: UITextView!
     @IBOutlet weak var mainButton: UIButtonX!
     @IBOutlet weak var cancelButton: UIButtonX2!
@@ -56,10 +59,24 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scene = GameScene(fileNamed:currentLevel)!
+        switch currentGame {
+        case .breakOut:
+            scene = GameScene(fileNamed:currentLevel)!
+        case .flappyBird:
+            scene = GameScene(fileNamed: "FlappyBird")!
+            do{
+                audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "background", ofType: "mp3")!))
+                audioPlayer.prepareToPlay()
+            }
+            catch{
+                print(error)
+            }
+            
+        }
+        
         let skView = self.view as! SKView
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .aspectFill
         scene.size = view.bounds.size
@@ -94,8 +111,6 @@ class ViewController: UIViewController{
         nebdev!.streamQuaternion(false)
         nebdev!.streamEulerAngle(true)
         
-        
-        
         skView.presentScene(scene)
     }
     
@@ -105,6 +120,7 @@ class ViewController: UIViewController{
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {
             action in
              //UIApplication.shared.isIdleTimerDisabled = false
+            self.audioPlayer.stop()
             self.dismiss(animated: true, completion: nil)
             _ = self.navigationController?.popViewController(animated: true)
         }))
@@ -138,6 +154,7 @@ class ViewController: UIViewController{
         self.cancelButton.alpha = 0
         
         navigationController?.setNavigationBarHidden(true, animated: false)
+        audioPlayer.play()
         //self.fourthButton.alpha = 0
     }
     

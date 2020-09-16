@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum Game{
+    case flappyBird
+    case breakOut
+}
+
+var currentGame = Game.breakOut
 class ChooseGameViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -17,14 +23,21 @@ class ChooseGameViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        switch segue.identifier{
+        case "breakOut":
+            currentGame = Game.breakOut
+        case "flappyBird":
+            currentGame = Game.flappyBird
+            let controller = segue.destination as! SensorsTableViewController
+            controller.prepareStart = true
+        default:
+            print("unknown game")
+            break
+        }
     }
-    */
 
 }

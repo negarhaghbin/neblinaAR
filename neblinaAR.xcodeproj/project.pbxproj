@@ -34,12 +34,17 @@
 		84FEE4A4250A9D7900757CA1 /* BOLevel2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4A3250A9D7900757CA1 /* BOLevel2.sks */; };
 		84FEE4A8250A9E0E00757CA1 /* BOLevel1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4A6250A9E0E00757CA1 /* BOLevel1.sks */; };
 		84FEE4A9250A9E0E00757CA1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEE4A7250A9E0E00757CA1 /* GameScene.swift */; };
-		84FEE4AB250A9E5B00757CA1 /* BOLevel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEE4AA250A9E5B00757CA1 /* BOLevel2.swift */; };
 		84FEE4B5250A9FD400757CA1 /* BOLevel4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4AE250A9FD400757CA1 /* BOLevel4.sks */; };
 		84FEE4B6250A9FD400757CA1 /* BOLevel5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4B0250A9FD400757CA1 /* BOLevel5.sks */; };
 		84FEE4B7250A9FD400757CA1 /* BOLevel3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4B2250A9FD400757CA1 /* BOLevel3.sks */; };
 		84FEE4B8250A9FD400757CA1 /* BOLevel6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4B4250A9FD400757CA1 /* BOLevel6.sks */; };
 		84FEE4BA250BC4E400757CA1 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEE4B9250BC4E400757CA1 /* SKButton.swift */; };
+		84FEE4BD25116AF900757CA1 /* FlappyBird.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4BC25116AF900757CA1 /* FlappyBird.sks */; };
+		84FEE4C025116B9500757CA1 /* FBbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4BE25116B9500757CA1 /* FBbackground.png */; };
+		84FEE4C125116B9500757CA1 /* FBbird.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4BF25116B9500757CA1 /* FBbird.png */; };
+		84FEE4C325116DC900757CA1 /* pipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4C225116DC900757CA1 /* pipe.png */; };
+		84FEE4C625116DE800757CA1 /* FlappyBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEE4C525116DE800757CA1 /* FlappyBird.swift */; };
+		84FEE4C82512447A00757CA1 /* flippedPipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FEE4C72512447A00757CA1 /* flippedPipe.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,12 +91,18 @@
 		84FEE4A3250A9D7900757CA1 /* BOLevel2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BOLevel2.sks; sourceTree = "<group>"; };
 		84FEE4A6250A9E0E00757CA1 /* BOLevel1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BOLevel1.sks; sourceTree = "<group>"; };
 		84FEE4A7250A9E0E00757CA1 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		84FEE4AA250A9E5B00757CA1 /* BOLevel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BOLevel2.swift; sourceTree = "<group>"; };
 		84FEE4AE250A9FD400757CA1 /* BOLevel4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = BOLevel4.sks; path = ../BOLevel5/BOLevel4.sks; sourceTree = "<group>"; };
 		84FEE4B0250A9FD400757CA1 /* BOLevel5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = BOLevel5.sks; path = ../BOLevel4/BOLevel5.sks; sourceTree = "<group>"; };
 		84FEE4B2250A9FD400757CA1 /* BOLevel3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BOLevel3.sks; sourceTree = "<group>"; };
 		84FEE4B4250A9FD400757CA1 /* BOLevel6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BOLevel6.sks; sourceTree = "<group>"; };
 		84FEE4B9250BC4E400757CA1 /* SKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
+		84FEE4BC25116AF900757CA1 /* FlappyBird.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FlappyBird.sks; sourceTree = "<group>"; };
+		84FEE4BE25116B9500757CA1 /* FBbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBbackground.png; sourceTree = "<group>"; };
+		84FEE4BF25116B9500757CA1 /* FBbird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBbird.png; sourceTree = "<group>"; };
+		84FEE4C225116DC900757CA1 /* pipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipe.png; sourceTree = "<group>"; };
+		84FEE4C525116DE800757CA1 /* FlappyBird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlappyBird.swift; sourceTree = "<group>"; };
+		84FEE4C72512447A00757CA1 /* flippedPipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flippedPipe.png; sourceTree = "<group>"; };
+		84FEE4C925125C6A00757CA1 /* flippedPipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flippedPipe.png; path = neblinaAR/Resources/flippedPipe.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +120,10 @@
 		84826CC0250129E300675E89 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84FEE4C72512447A00757CA1 /* flippedPipe.png */,
+				84FEE4C225116DC900757CA1 /* pipe.png */,
+				84FEE4BE25116B9500757CA1 /* FBbackground.png */,
+				84FEE4BF25116B9500757CA1 /* FBbird.png */,
 				84B4AA42250A6BB6003F3A54 /* ball.png */,
 				84B4AA3E250934F5003F3A54 /* ARCADECLASSIC.TTF */,
 				84826CC52501456000675E89 /* background.mp3 */,
@@ -176,6 +191,7 @@
 		84E6EEC823539B3B001B00D8 = {
 			isa = PBXGroup;
 			children = (
+				84FEE4C925125C6A00757CA1 /* flippedPipe.png */,
 				84E6EED323539B3B001B00D8 /* neblinaAR */,
 				84E6EED223539B3B001B00D8 /* Products */,
 				84D2C116243178D80006956E /* Frameworks */,
@@ -193,6 +209,7 @@
 		84E6EED323539B3B001B00D8 /* neblinaAR */ = {
 			isa = PBXGroup;
 			children = (
+				84FEE4BB25116ADB00757CA1 /* FlappyBird */,
 				84FEE4A2250A9D3D00757CA1 /* BreakoutLevels */,
 				84826CC0250129E300675E89 /* Resources */,
 				84A35898241E8720000AE822 /* CollapseMenu Files */,
@@ -236,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				84FEE4A3250A9D7900757CA1 /* BOLevel2.sks */,
-				84FEE4AA250A9E5B00757CA1 /* BOLevel2.swift */,
 			);
 			path = BOLevel2;
 			sourceTree = "<group>";
@@ -271,6 +287,15 @@
 				84FEE4B4250A9FD400757CA1 /* BOLevel6.sks */,
 			);
 			path = BOLevel6;
+			sourceTree = "<group>";
+		};
+		84FEE4BB25116ADB00757CA1 /* FlappyBird */ = {
+			isa = PBXGroup;
+			children = (
+				84FEE4BC25116AF900757CA1 /* FlappyBird.sks */,
+				84FEE4C525116DE800757CA1 /* FlappyBird.swift */,
+			);
+			path = FlappyBird;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +356,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FEE4C82512447A00757CA1 /* flippedPipe.png in Resources */,
 				84FEE4B7250A9FD400757CA1 /* BOLevel3.sks in Resources */,
 				84FEE4B6250A9FD400757CA1 /* BOLevel5.sks in Resources */,
 				84FEE4A4250A9D7900757CA1 /* BOLevel2.sks in Resources */,
@@ -342,6 +368,10 @@
 				84FEE4B8250A9FD400757CA1 /* BOLevel6.sks in Resources */,
 				84B4AA3F250934F6003F3A54 /* ARCADECLASSIC.TTF in Resources */,
 				84E6EEDE23539B41001B00D8 /* Assets.xcassets in Resources */,
+				84FEE4C325116DC900757CA1 /* pipe.png in Resources */,
+				84FEE4C025116B9500757CA1 /* FBbackground.png in Resources */,
+				84FEE4C125116B9500757CA1 /* FBbird.png in Resources */,
+				84FEE4BD25116AF900757CA1 /* FlappyBird.sks in Resources */,
 				84E6EEDC23539B3B001B00D8 /* Main.storyboard in Resources */,
 				84FEE4B5250A9FD400757CA1 /* BOLevel4.sks in Resources */,
 				84826CC62501456000675E89 /* background.mp3 in Resources */,
@@ -362,12 +392,12 @@
 				84B4AA45250A758E003F3A54 /* ChooseGameViewController.swift in Sources */,
 				84D2C12F243179B00006956E /* CGContext+GraphLines.swift in Sources */,
 				84A35897241D39BF000AE822 /* MainViewController.swift in Sources */,
+				84FEE4C625116DE800757CA1 /* FlappyBird.swift in Sources */,
 				84FEE4BA250BC4E400757CA1 /* SKButton.swift in Sources */,
 				84D5131E243D58B70012D52D /* SensorDetailViewController.swift in Sources */,
 				84A3589E241E8720000AE822 /* UILabelX.swift in Sources */,
 				84D2C12E243179B00006956E /* Neblina.swift in Sources */,
 				84B3AE3E24327DF2008FB6B6 /* SensorsTableViewController.swift in Sources */,
-				84FEE4AB250A9E5B00757CA1 /* BOLevel2.swift in Sources */,
 				84FEE4A9250A9E0E00757CA1 /* GameScene.swift in Sources */,
 				84E6EED923539B3B001B00D8 /* ViewController.swift in Sources */,
 				84E6EED523539B3B001B00D8 /* AppDelegate.swift in Sources */,

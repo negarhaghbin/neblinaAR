@@ -31,28 +31,32 @@ class ChooseLevelViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let controller = segue.destination as! SensorsTableViewController
         switch segue.identifier{
         case "level1":
+            let controller = segue.destination as! SensorsTableViewController
             controller.prepareStart = true
             currentLevel = LevelSceneNames.level1.rawValue
         case "level2":
+            let controller = segue.destination as! SensorsTableViewController
             controller.prepareStart = true
             currentLevel = LevelSceneNames.level2.rawValue
         case "level3":
+            let controller = segue.destination as! SensorsTableViewController
             controller.prepareStart = true
             currentLevel = LevelSceneNames.level3.rawValue
         case "level4":
+            let controller = segue.destination as! SensorsTableViewController
             controller.prepareStart = true
             currentLevel = LevelSceneNames.level4.rawValue
         case "level5":
+            let controller = segue.destination as! SensorsTableViewController
             controller.prepareStart = true
             currentLevel = LevelSceneNames.level5.rawValue
         case "level6":
+            let controller = segue.destination as! SensorsTableViewController
             controller.prepareStart = true
             currentLevel = LevelSceneNames.level6.rawValue
         default:
-            print("unknown level")
             break
         }
     }

@@ -180,10 +180,19 @@ extension ViewController: NeblinaDelegate{
                     player.zRotation = CGFloat(GLKMathDegreesToRadians(180) - GLKMathDegreesToRadians(xrot))
                 }
                 else {
-                    let new_pos = CGFloat(xrot)*11
-                    if ( new_pos + player.size.width/2 < UIScreen.main.bounds.size.width/2 && new_pos - player.size.width/2 > -UIScreen.main.bounds.size.width/2){
-                        player.position.x = new_pos
+                    if currentGame == .breakOut{
+                        let new_pos = CGFloat(xrot)*11
+                        if ( new_pos + player.size.width/2 < UIScreen.main.bounds.size.width/2 && new_pos - player.size.width/2 > -UIScreen.main.bounds.size.width/2){
+                            player.position.x = new_pos
+                        }
                     }
+                    else{
+                        let new_pos = CGFloat(zrot)*11
+                        if ( new_pos + bird.size.height/2 < UIScreen.main.bounds.size.height/2 && new_pos - bird.size.height/2 > -UIScreen.main.bounds.size.height/2){
+                            bird.position.y = -new_pos
+                        }
+                    }
+                    
                     
 //                    player.eulerAngles = SCNVector3Make(GLKMathDegreesToRadians(180) - GLKMathDegreesToRadians(yrot), GLKMathDegreesToRadians(xrot), GLKMathDegreesToRadians(180) - GLKMathDegreesToRadians(zrot))
                 }
