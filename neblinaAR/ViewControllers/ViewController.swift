@@ -18,7 +18,7 @@ class ViewController: UIViewController{
         }
     }
     
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var pauseLabel: UILabel!
 
     var scene = SKScene()
     let max_count = Int16(15)
@@ -55,6 +55,7 @@ class ViewController: UIViewController{
     @IBOutlet weak var mainButton: UIButtonX!
     @IBOutlet weak var cancelButton: UIButtonX2!
     @IBOutlet weak var soundButton: UIButtonX2!
+    @IBOutlet weak var pauseButton: UIButtonX2!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,82 +131,100 @@ class ViewController: UIViewController{
         self.present(alert, animated: true)
     }
     
-//    func showMessage(_ messageView:UITextView){
-//        self.messageView.isHidden=false
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 30.0) {
-//            self.messageView.isHidden=true
-//        }
-//    }
+    @IBAction func pause(_ sender: Any) {
+        let skView = self.view as! SKView
+        if skView.isPaused{
+            pauseLabel.isHidden = true
+            skView.scene?.isPaused = false
+            skView.isPaused = false
+            pauseButton.setImage(UIImage(systemName: "pause"), for: .normal)
+        }
+        else{
+            pauseLabel.isHidden = false
+            skView.scene?.isPaused = true
+            skView.isPaused = true
+            pauseButton.setImage(UIImage(systemName: "play"), for: .normal)
+        }
+        
+        
+        
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-//        showMessage(messageView)
         
         self.mainButton.imageView?.contentMode = .center
         self.mainButton.imageView?.clipsToBounds = false
         
         
-        //self.fourthButton.center = self.soundButton.center
+        self.pauseButton.center = self.soundButton.center
         self.soundButton.center = self.cancelButton.center
         self.cancelButton.center = self.mainButton.center
         
+        self.pauseButton.alpha = 0
         self.soundButton.alpha = 0
         self.cancelButton.alpha = 0
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         audioPlayer.play()
-        //self.fourthButton.alpha = 0
     }
     
-    /**
-     Action for Main Button
-     */
+
+    // MARK: Menu
+    
     @IBAction func mainButtonAction(_ sender: Any) {
         
         if mainButton.imageView?.transform != .identity {
-            //self.secondButton.alpha = 1
             animate(true)
         } else {
             animate(false)
         }
     }
-    /**
-     Animate Sub-buttons
-     */
+
     func animate(_ isStart: Bool) {
         
         if isStart {
-            UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut, animations: {
-                    UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseInOut, animations: {
+            UIViewPropertyAnimator(duration: 0.2, curve: .easeInOut, animations: {
+                    UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
                         self.cancelButton.transform = CGAffineTransform(translationX: 0, y: 0)
                         self.cancelButton.alpha = 1
                         
-                        UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseInOut, animations: {
+                        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
                             self.soundButton.transform = CGAffineTransform(translationX: 0, y: 0)
                             self.soundButton.alpha = 1
+                            
+                        
+                        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
+                            self.pauseButton.transform = CGAffineTransform(translationX: 0, y: 0)
+                            self.pauseButton.alpha = 1
+                            })
                             
                         })
                     })
             }).startAnimation()
         } else {
             
-            UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut, animations: {
+            UIViewPropertyAnimator(duration: 0.2, curve: .easeInOut, animations: {
                 
-                UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut, animations: {
+                UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseInOut, animations: {
+                    
+                    UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
+                        
+                        self.pauseButton.transform = .identity
+                        self.pauseButton.alpha = 0
                      
-                    UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseInOut, animations: {
+                        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
                         
-                        self.soundButton.transform = .identity
-                        self.soundButton.alpha = 0
+                            self.soundButton.transform = .identity
+                            self.soundButton.alpha = 0
                         
-                        UIView.animate(withDuration: 0.3, delay: 0.3 , options: .curveEaseInOut, animations: {
+                            UIView.animate(withDuration: 0.2, delay: 0.2 , options: .curveEaseInOut, animations: {
                             
-                            self.cancelButton.transform = .identity
-                            self.cancelButton.alpha = 0
-                            
+                                self.cancelButton.transform = .identity
+                                self.cancelButton.alpha = 0
+                            })
+                        
                         })
-                        
                     })
                 })
             }).startAnimation()

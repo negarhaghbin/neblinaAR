@@ -87,6 +87,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pause" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88s-od-59B">
+                                <rect key="frame" x="75" y="399.5" width="264" height="97.5"/>
+                                <fontDescription key="fontDescription" name="ArcadeClassic" family="ArcadeClassic" pointSize="96"/>
+                                <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Php-Ec-PFY" customClass="UIButtonX2" customModule="neblinaAR" customModuleProvider="target">
                                 <rect key="frame" x="30" y="702" width="60" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -162,13 +168,41 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isEnabledInitFromAnimation" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5h-La-qcO" customClass="UIButtonX2" customModule="neblinaAR" customModuleProvider="target">
+                                <rect key="frame" x="30" y="522" width="60" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="MmL-wM-gTZ"/>
+                                    <constraint firstAttribute="width" constant="60" id="SHm-y6-xar"/>
+                                    <constraint firstAttribute="height" constant="60" id="whR-on-on8"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="xsK-Cg-8Ye"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="pause" catalog="system">
+                                    <color key="titleColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="large" weight="bold"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isEnabledInitFromAnimation" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pause:" destination="BV1-FR-VrT" eventType="touchUpInside" id="nQd-Cl-TxJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Php-Ec-PFY" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="30" id="8yI-m7-P5W"/>
                             <constraint firstItem="Yuu-E6-NnD" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="30" id="Ghz-rJ-4TP"/>
+                            <constraint firstItem="Yuu-E6-NnD" firstAttribute="top" secondItem="o5h-La-qcO" secondAttribute="bottom" constant="30" id="WO6-yv-PEZ"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="pRc-Xw-UTP" secondAttribute="bottom" constant="10" id="Xcf-Ed-Sm8"/>
                             <constraint firstItem="pRc-Xw-UTP" firstAttribute="top" secondItem="Php-Ec-PFY" secondAttribute="bottom" constant="30" id="aQK-Ye-Fqq"/>
+                            <constraint firstItem="88s-od-59B" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" id="bDy-Wz-Dvl"/>
+                            <constraint firstItem="o5h-La-qcO" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="30" id="hCD-XX-rPH"/>
+                            <constraint firstItem="88s-od-59B" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="n9A-Qg-ZSH"/>
                             <constraint firstItem="Php-Ec-PFY" firstAttribute="top" secondItem="Yuu-E6-NnD" secondAttribute="bottom" constant="30" id="sHd-Te-sZ8"/>
                             <constraint firstItem="pRc-Xw-UTP" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="30" id="zLN-0I-AFp"/>
                         </constraints>
@@ -178,6 +212,8 @@
                     <connections>
                         <outlet property="cancelButton" destination="Php-Ec-PFY" id="TjE-GQ-KXY"/>
                         <outlet property="mainButton" destination="pRc-Xw-UTP" id="ZDE-a6-zVo"/>
+                        <outlet property="pauseButton" destination="o5h-La-qcO" id="Ji2-Cu-Hua"/>
+                        <outlet property="pauseLabel" destination="88s-od-59B" id="Muz-Ww-fTq"/>
                         <outlet property="soundButton" destination="Yuu-E6-NnD" id="7xK-6c-xig"/>
                     </connections>
                 </viewController>
@@ -607,6 +643,7 @@
         <image name="arrow.turn.up.left" catalog="system" width="128" height="99"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="pause" catalog="system" width="88" height="128"/>
         <image name="speaker.2" catalog="system" width="128" height="97"/>
     </resources>
 </document>
