@@ -39,6 +39,11 @@ class SensorsTableViewController: UIViewController, UITableViewDelegate, UITable
         objects.removeAll()
         bleCentralManager.scanForPeripherals(withServices: [NEB_SERVICE_UUID], options: nil)
     }
+    
+    @IBAction func goBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        _ = self.navigationController?.popViewController(animated: true)
+    }
 
     // MARK: - Segues
 

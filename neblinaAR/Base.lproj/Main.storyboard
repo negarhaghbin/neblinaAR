@@ -77,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XpR-9N-cLW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2741" y="-372"/>
+            <point key="canvasLocation" x="-3601" y="-388"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -183,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1709" y="-62"/>
+            <point key="canvasLocation" x="320" y="591"/>
         </scene>
         <!--Choose Game View Controller-->
         <scene sceneID="i6v-re-HOp">
@@ -207,7 +207,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="H3L-1Y-kAG" kind="showDetail" identifier="breakOut" id="rYe-md-UzY"/>
+                                            <segue destination="H3L-1Y-kAG" kind="show" identifier="breakOut" id="rYe-md-UzY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qll-UP-TW3">
@@ -221,7 +221,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="2lH-8e-KAx" kind="showDetail" identifier="flappyBird" id="mMq-AA-8cr"/>
+                                            <segue destination="2lH-8e-KAx" kind="show" identifier="flappyBird" id="mMq-AA-8cr"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -241,7 +241,7 @@
                                     </preferredSymbolConfiguration>
                                 </state>
                                 <connections>
-                                    <segue destination="hWd-Gn-hcA" kind="showDetail" id="yaA-er-XW8"/>
+                                    <action selector="goBack:" destination="lrD-IU-gDX" eventType="touchUpInside" id="6e0-Ma-w5D"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -259,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oBV-mc-VSr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1997" y="900"/>
+            <point key="canvasLocation" x="-2484" y="-806"/>
         </scene>
         <!--Choose Level View Controller-->
         <scene sceneID="4S2-o8-cB3">
@@ -286,7 +286,7 @@
                                     </preferredSymbolConfiguration>
                                 </state>
                                 <connections>
-                                    <segue destination="lrD-IU-gDX" kind="showDetail" id="JCu-Um-E6i"/>
+                                    <action selector="goBack:" destination="H3L-1Y-kAG" eventType="touchUpInside" id="FCN-wy-blV"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="6V2-oR-DrH">
@@ -303,7 +303,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="2lH-8e-KAx" kind="showDetail" identifier="level1" id="fRR-ik-0HS"/>
+                                            <segue destination="2lH-8e-KAx" kind="show" identifier="level1" id="fRR-ik-0HS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEd-fh-P7Q">
@@ -317,7 +317,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="2lH-8e-KAx" kind="showDetail" identifier="level2" id="sQq-CY-223"/>
+                                            <segue destination="2lH-8e-KAx" kind="show" identifier="level2" id="sQq-CY-223"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jq-8X-rQt">
@@ -331,7 +331,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="2lH-8e-KAx" kind="showDetail" identifier="level3" id="3ep-uU-qfz"/>
+                                            <segue destination="2lH-8e-KAx" kind="show" identifier="level3" id="3ep-uU-qfz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5U-D5-u3H">
@@ -345,7 +345,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="2lH-8e-KAx" kind="showDetail" identifier="level4" id="g3D-0d-hnw"/>
+                                            <segue destination="2lH-8e-KAx" kind="show" identifier="level4" id="g3D-0d-hnw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCm-Ot-cXD">
@@ -359,7 +359,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="2lH-8e-KAx" kind="showDetail" identifier="level5" id="9Ej-ma-dte"/>
+                                            <segue destination="2lH-8e-KAx" kind="show" identifier="level5" id="9Ej-ma-dte"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOM-de-k21">
@@ -373,7 +373,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="2lH-8e-KAx" kind="showDetail" identifier="level6" id="EqI-SE-lzr"/>
+                                            <segue destination="2lH-8e-KAx" kind="show" identifier="level6" id="EqI-SE-lzr"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -402,7 +402,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpf-XC-JR6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-959" y="-372"/>
+            <point key="canvasLocation" x="-1525" y="-806"/>
         </scene>
         <!--Sensors Table View Controller-->
         <scene sceneID="BWF-Zj-l1K">
@@ -423,7 +423,7 @@
                                     </preferredSymbolConfiguration>
                                 </state>
                                 <connections>
-                                    <segue destination="H3L-1Y-kAG" kind="showDetail" id="4FQ-EP-Tyy"/>
+                                    <action selector="goBack:" destination="2lH-8e-KAx" eventType="touchUpInside" id="6ih-JG-Cuq"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XXw-JK-ZFW">
@@ -516,7 +516,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXW-8I-aqz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133" y="-372"/>
+            <point key="canvasLocation" x="-1957" y="133"/>
         </scene>
         <!--Sensor Detail View Controller-->
         <scene sceneID="KWE-9O-bIh">
@@ -596,13 +596,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0e-uS-Ras" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1709" y="-957"/>
+            <point key="canvasLocation" x="319" y="-194"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="n98-F8-fum"/>
-        <segue reference="rYe-md-UzY"/>
-        <segue reference="JCu-Um-E6i"/>
+        <segue reference="sQq-CY-223"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="appicon" width="512" height="512"/>

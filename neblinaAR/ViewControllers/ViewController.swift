@@ -63,7 +63,7 @@ class ViewController: UIViewController{
         case .breakOut:
             scene = GameScene(fileNamed:currentLevel)!
         case .flappyBird:
-            scene = GameScene(fileNamed: "FlappyBird")!
+            scene = FlappyBird(fileNamed: "FlappyBird")!
             do{
                 audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "background", ofType: "mp3")!))
                 audioPlayer.prepareToPlay()
