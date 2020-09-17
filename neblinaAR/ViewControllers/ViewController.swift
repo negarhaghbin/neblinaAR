@@ -67,6 +67,7 @@ class ViewController: UIViewController{
             scene = FlappyBird(fileNamed: "FlappyBird")!
             do{
                 audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "background", ofType: "mp3")!))
+                audioPlayer.numberOfLoops = -1
                 audioPlayer.prepareToPlay()
             }
             catch{

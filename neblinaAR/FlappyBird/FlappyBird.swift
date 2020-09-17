@@ -16,55 +16,71 @@ enum PhysicsCategory : UInt32 {
 
 var bird = SKSpriteNode()
 var time = 0
+var flappyBirdTimer = Timer()
 
 class FlappyBird: SKScene, SKPhysicsContactDelegate {
     var resultsLbl = SKLabelNode()
+    var scoreResultLbl = SKLabelNode()
     var scoreLbl = SKLabelNode()
     let tryAgainButton = SKButton()
     
     override func didMove(to view: SKView) {
-      bird = self.childNode(withName: "bird") as! SKSpriteNode
-      bird.position = CGPoint(x: 0, y: 0)
+        bird = self.childNode(withName: "bird") as! SKSpriteNode
+        bird.position = CGPoint(x: 0, y: 0)
         
-      resultsLbl = self.childNode(withName: "resultsLabel") as! SKLabelNode
-      resultsLbl.position = CGPoint(x: 0, y: 0)
-      resultsLbl.zPosition = 3
-      resultsLbl.isHidden = true
+        createResultLabels()
         
-      scoreLbl = self.childNode(withName: "scoreLabel") as! SKLabelNode
+        scoreLbl = self.childNode(withName: "scoreLabel") as! SKLabelNode
+        scoreLbl.zPosition = 1
         
-      tryAgainButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(FlappyBird.tryAgain))
-      tryAgainButton.setButtonLabel(title: "Try Again", font: "ARCADECLASSIC", fontSize: 30)
-      tryAgainButton.color = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-      tryAgainButton.position = CGPoint(x: resultsLbl.position.x,y: resultsLbl.position.y - 2*resultsLbl.frame.height)
-      tryAgainButton.zPosition = 3
-      tryAgainButton.name = "nextLevelButton"
-      tryAgainButton.isHidden = true
-      self.addChild(tryAgainButton)
+        createTryAgainButton()
       
-      physicsWorld.gravity = .zero
-      physicsWorld.contactDelegate = self
+        physicsWorld.gravity = .zero
+        physicsWorld.contactDelegate = self
       
-        _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            time += 1
-            self.scoreLbl.text = "\(time)"
-      }
+        setTimer()
       
-      run(SKAction.repeatForever(
-        SKAction.sequence([
-          SKAction.run(addPipe),
-          SKAction.wait(forDuration: 1.0)
-          ])
-      ))
+        run(SKAction.repeatForever(
+          SKAction.sequence([
+            SKAction.run(addPipe),
+            SKAction.wait(forDuration: 1.0)
+            ])
+        ))
       
-//      let backgroundMusic = SKAudioNode(fileNamed: "background.mp3")
-//      backgroundMusic.autoplayLooped = true
-//      addChild(backgroundMusic)
+    }
+    
+    func createResultLabels(){
+        resultsLbl = self.childNode(withName: "resultsLabel") as! SKLabelNode
+        resultsLbl.position = CGPoint(x: 0, y: 100)
+        resultsLbl.zPosition = 1
+        resultsLbl.isHidden = true
         
-//        let border = SKPhysicsBody(edgeLoopFrom: self.frame)
-//        border.friction = 0
-//        border.restitution = 0
-//        self.physicsBody = border
+        scoreResultLbl = self.childNode(withName: "scoreResult") as! SKLabelNode
+        scoreResultLbl.position = CGPoint(x: 0, y: 0)
+        scoreResultLbl.zPosition = 1
+        scoreResultLbl.isHidden = true
+    }
+    
+    func createTryAgainButton(){
+        tryAgainButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(FlappyBird.tryAgain))
+        tryAgainButton.setButtonLabel(title: "Try Again", font: "ARCADECLASSIC", fontSize: 30)
+        tryAgainButton.color = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        tryAgainButton.position = CGPoint(x: scoreResultLbl.position.x,y: scoreResultLbl.position.y - 100)
+        tryAgainButton.zPosition = 1
+        tryAgainButton.name = "nextLevelButton"
+        tryAgainButton.isHidden = true
+        self.addChild(tryAgainButton)
+    }
+    
+    func setTimer(){
+        flappyBirdTimer.invalidate()
+        time = 0
+        flappyBirdTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+              if !self.view!.isPaused{
+                  time += 1
+                  self.scoreLbl.text = "\(time)"
+              }
+        }
     }
     
     @objc func tryAgain() {
@@ -80,12 +96,13 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
       return random() * (max - min) + min
     }
     
+    
     func addPipe() {
-        let pipe = SKSpriteNode(imageNamed: "pipe")
+        var pipe = SKSpriteNode(imageNamed: "pipe")
         let upOrDown = Int.random(in: 0...1)
         var actualY = CGFloat()
         if upOrDown == 0{
-            pipe.texture = SKTexture(imageNamed: "flippedPipe")
+            pipe = SKSpriteNode(imageNamed: "downPipe")
             actualY = random(min: size.height/2 - pipe.size.height/2, max: size.height/2)
             pipe.position = CGPoint(x: size.width + pipe.size.width/2, y: actualY)
         }
@@ -93,27 +110,20 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
             actualY = random(min: -size.height/2, max: -size.height/2 + pipe.size.height/2)
             pipe.position = CGPoint(x: size.width + pipe.size.width/2, y: actualY)
         }
+        
         pipe.physicsBody = SKPhysicsBody(rectangleOf: pipe.size)
         pipe.physicsBody?.isDynamic = false
         pipe.physicsBody?.categoryBitMask = PhysicsCategory.pipe.rawValue
         pipe.physicsBody?.contactTestBitMask = PhysicsCategory.bird.rawValue
         pipe.physicsBody?.collisionBitMask = PhysicsCategory.bird.rawValue
-        pipe.zPosition = 2
         
         addChild(pipe)
       
-//        let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
         let actualDuration = CGFloat(4.0)
       
         let actionMove = SKAction.move(to: CGPoint(x: -size.width/2-pipe.size.width/2, y: actualY), duration: TimeInterval(actualDuration))
-      let actionMoveDone = SKAction.removeFromParent()
-//      let loseAction = SKAction.run() { [weak self] in
-////        guard let `self` = self else { return }
-////        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-////        let gameOverScene = GameOverScene(size: self.size, won: false)
-////        self.view?.presentScene(gameOverScene, transition: reveal)
-//      }
-      pipe.run(SKAction.sequence([actionMove, actionMoveDone]))
+        let actionMoveDone = SKAction.removeFromParent()
+        pipe.run(SKAction.sequence([actionMove, actionMoveDone]))
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -126,9 +136,12 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
         bird.isPaused = true
         self.isPaused = true
         self.view?.isPaused = true
+        flappyBirdTimer.invalidate()
         physicsWorld.speed = 0
         resultsLbl.text = "You Lost!"
+        scoreResultLbl.text = "score: \(time)"
         resultsLbl.isHidden = false
+        scoreResultLbl.isHidden = false
         tryAgainButton.isHidden = false
     }
 }
