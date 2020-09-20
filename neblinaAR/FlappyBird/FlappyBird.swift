@@ -43,7 +43,7 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
         run(SKAction.repeatForever(
           SKAction.sequence([
             SKAction.run(addPipe),
-            SKAction.wait(forDuration: 1.0)
+            SKAction.wait(forDuration: (2-FlappyBirdSettings.get().speed) * 1.0)
             ])
         ))
       
@@ -119,7 +119,7 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
         
         addChild(pipe)
       
-        let actualDuration = CGFloat(4.0)
+        let actualDuration = CGFloat((2-FlappyBirdSettings.get().speed) * 4.0)
       
         let actionMove = SKAction.move(to: CGPoint(x: -size.width/2-pipe.size.width/2, y: actualY), duration: TimeInterval(actualDuration))
         let actionMoveDone = SKAction.removeFromParent()

@@ -19,53 +19,27 @@ class GameScene: SKScene {
     var ball = SKSpriteNode()
     var scoreLbl = SKLabelNode()
     var resultsLbl = SKLabelNode()
+    var scoreResultsLbl = SKLabelNode()
     let nextLevelButton = SKButton()
     let addImpulseButton = SKButton()
     
     override func didMove(to view: SKView) {
         startGame()
         
-        player = self.childNode(withName: "slider") as! SKSpriteNode
-        player.position.y = (-self.frame.height/2) + 100
+        createPaddle()
         
         let blockChildren = self.children.filter({$0.name == "block"})
         for block in blockChildren{
             block.physicsBody?.contactTestBitMask = block.physicsBody?.collisionBitMask ?? 0
-            //block.position.y = (self.frame.height/2) - 100
             blocks.append(block as! SKSpriteNode)
         }
         
-        ball = self.childNode(withName: "ball") as! SKSpriteNode
-        ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-        ball.physicsBody?.applyImpulse(CGVector(dx: 22, dy: -22))
-        var blocks_by_lowest_y = blockChildren
-        blocks_by_lowest_y = blocks_by_lowest_y.sorted(by: {$0.position.y < $1.position.y})
-        ball.position = CGPoint(x: 0, y: blocks_by_lowest_y[0].position.y - blocks[0].size.height)
-        
+        createBall(blockChildren: blockChildren)
         scoreLbl = self.childNode(withName: "scoreLabel") as! SKLabelNode
         scoreLbl.position = CGPoint(x: (-self.frame.width/2) + 50, y: (self.frame.height/2) - 100)
-        
-        resultsLbl = self.childNode(withName: "resultsLabel") as! SKLabelNode
-        resultsLbl.position = CGPoint(x: 0, y: 0)
-        resultsLbl.isHidden = true
-        
-        nextLevelButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(GameScene.goNextLevel))
-        nextLevelButton.setButtonLabel(title: "Next Level", font: "ARCADECLASSIC", fontSize: 30)
-        nextLevelButton.color = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-        nextLevelButton.label.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        nextLevelButton.position = CGPoint(x: resultsLbl.position.x,y: resultsLbl.position.y - 2*resultsLbl.frame.height)
-        nextLevelButton.zPosition = 1
-        nextLevelButton.name = "nextLevelButton"
-        nextLevelButton.isHidden = true
-        self.addChild(nextLevelButton)
-        
-        addImpulseButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(GameScene.addImpulse))
-        addImpulseButton.setButtonLabel(title: "Shake", font: "ARCADECLASSIC", fontSize: 25)
-        addImpulseButton.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
-        addImpulseButton.position = CGPoint(x: (self.frame.width/2) - 50, y: (self.frame.height/2) - 75)
-        addImpulseButton.zPosition = 1
-        addImpulseButton.name = "addImpulseButton"
-        self.addChild(addImpulseButton)
+        createResultLabels()
+        createNextLevelButton()
+        createAddImpulseButton()
         
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         border.friction = 0
@@ -75,10 +49,72 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
     }
     
+    func createPaddle(){
+        player = self.childNode(withName: "slider") as! SKSpriteNode
+        player.position.y = (-self.frame.height/2) + 100
+        player.size.width = CGFloat(BreakoutSettings.get().paddleWidth) * player.size.width
+        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
+        player.physicsBody?.allowsRotation = false
+        player.physicsBody?.pinned = false
+        player.physicsBody?.affectedByGravity = false
+        player.physicsBody?.isDynamic = false
+        player.physicsBody?.friction = 0
+        player.physicsBody?.restitution = 0
+        player.physicsBody?.categoryBitMask = 1
+        player.physicsBody?.collisionBitMask = 2
+        player.physicsBody?.contactTestBitMask = 2
+    }
+    
+    func createBall(blockChildren: [SKNode]){
+        ball = self.childNode(withName: "ball") as! SKSpriteNode
+        ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
+        let speedMultiplier = BreakoutSettings.get().speed
+        ball.physicsBody?.applyImpulse(CGVector(dx: speedMultiplier * 22, dy: speedMultiplier * -22))
+        var blocks_by_lowest_y = blockChildren
+        blocks_by_lowest_y = blocks_by_lowest_y.sorted(by: {$0.position.y < $1.position.y})
+        ball.position = CGPoint(x: 0, y: blocks_by_lowest_y[0].position.y - blocks[0].size.height)
+    }
+    
+    func createResultLabels(){
+        resultsLbl = self.childNode(withName: "resultsLabel") as! SKLabelNode
+        resultsLbl.position = CGPoint(x: 0, y: 100)
+        resultsLbl.isHidden = true
+        
+        scoreResultsLbl = self.childNode(withName: "scoreResult") as! SKLabelNode
+        scoreResultsLbl.position = CGPoint(x: 0, y: 0)
+        scoreResultsLbl.isHidden = true
+    }
+    
+    func createNextLevelButton(){
+        nextLevelButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(GameScene.goNextLevel))
+        nextLevelButton.setButtonLabel(title: "Next Level", font: "ARCADECLASSIC", fontSize: 30)
+        nextLevelButton.color = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        nextLevelButton.label.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        nextLevelButton.position = CGPoint(x: scoreResultsLbl.position.x,y: scoreResultsLbl.position.y - 2*scoreResultsLbl.frame.height)
+        nextLevelButton.zPosition = 1
+        nextLevelButton.name = "nextLevelButton"
+        nextLevelButton.isHidden = true
+        self.addChild(nextLevelButton)
+    }
+    
+    func createAddImpulseButton(){
+        addImpulseButton.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(GameScene.addImpulse))
+        addImpulseButton.setButtonLabel(title: "Shake", font: "ARCADECLASSIC", fontSize: 25)
+        addImpulseButton.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+        addImpulseButton.position = CGPoint(x: (self.frame.width/2) - 50, y: (self.frame.height/2) - 75)
+        addImpulseButton.zPosition = 1
+        addImpulseButton.name = "addImpulseButton"
+        self.addChild(addImpulseButton)
+    }
+    
     func nextLevel()->String{
-        var level = Int(String(currentLevel.last!))
-        level = level! + 1
-        return "BOLevel\(level ?? 1)"
+        var level = getLevel()
+        level = level + 1
+        return "BOLevel\(level)"
+    }
+    
+    func getLevel()->Int{
+        return Int(String(currentLevel.last!))!
     }
   
     @objc func goNextLevel() {
@@ -96,7 +132,12 @@ class GameScene: SKScene {
     }
     
     @objc func addImpulse() {
-        ball.physicsBody?.applyImpulse(CGVector(dx: 5, dy: -5))
+        if (abs((ball.physicsBody?.velocity.dx)!) < abs((ball.physicsBody?.velocity.dy)!)){
+            ball.physicsBody?.applyImpulse(CGVector(dx: 5, dy: 0))
+        }
+        else{
+            ball.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5))
+        }
     }
   
     func startGame(){
@@ -147,6 +188,8 @@ class GameScene: SKScene {
         physicsWorld.speed = 0
         resultsLbl.text = result
         resultsLbl.isHidden = false
+        scoreResultsLbl.text = "Score: \(score)"
+        scoreResultsLbl.isHidden = false
         if result == "You Lost!"{
             nextLevelButton.isHidden = false
             nextLevelButton.label.text = "Try Again"

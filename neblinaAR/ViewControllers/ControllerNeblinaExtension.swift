@@ -183,13 +183,15 @@ extension ViewController: NeblinaDelegate{
                     let skView = self.view as! SKView
                     if (!skView.isPaused){
                         if currentGame == .breakOut{
-                            let new_pos = CGFloat(xrot)*11
+                            let sensitivityMultiplier = CGFloat(11 * BreakoutSettings.get().sensitivity)
+                            let new_pos = CGFloat(xrot) * sensitivityMultiplier
                             if ( new_pos + player.size.width/2 < UIScreen.main.bounds.size.width/2 && new_pos - player.size.width/2 > -UIScreen.main.bounds.size.width/2){
                                 player.position.x = new_pos
                             }
                         }
                         else{
-                            let new_pos = CGFloat(zrot)*11
+                            let sensitivityMultiplier = CGFloat(11 * FlappyBirdSettings.get().sensitivity)
+                            let new_pos = CGFloat(zrot) * sensitivityMultiplier
                             if ( new_pos + bird.size.height/2 < UIScreen.main.bounds.size.height/2 && new_pos - bird.size.height/2 > -UIScreen.main.bounds.size.height/2){
                                 bird.position.y = -new_pos
                             }

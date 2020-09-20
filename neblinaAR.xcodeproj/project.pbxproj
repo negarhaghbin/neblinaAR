@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1672179B774B45899F0F817D /* Pods_neblinaAR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F7B41884B7DF95E5B831E8 /* Pods_neblinaAR.framework */; };
 		84826CC3250141A000675E89 /* ball.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84826CC12501419F00675E89 /* ball.mp3 */; };
 		84826CC62501456000675E89 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84826CC52501456000675E89 /* background.mp3 */; };
 		84A35897241D39BF000AE822 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A35896241D39BE000AE822 /* MainViewController.swift */; };
@@ -26,6 +27,10 @@
 		84D2C131243179B00006956E /* NeblinaControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2C127243179B00006956E /* NeblinaControl.swift */; };
 		84D5131E243D58B70012D52D /* SensorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5131D243D58B70012D52D /* SensorDetailViewController.swift */; };
 		84DA674A2513A56700E0EF7A /* downPipe.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DA67492513A56700E0EF7A /* downPipe.png */; };
+		84DA674D2513C44800E0EF7A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA674C2513C44800E0EF7A /* SettingsTableViewController.swift */; };
+		84DA67512513FE8000E0EF7A /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA67502513FE8000E0EF7A /* SettingsTableViewCell.swift */; };
+		84DA675B2516707900E0EF7A /* BreakoutSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA675A2516707900E0EF7A /* BreakoutSettings.swift */; };
+		84DA6762251673B700E0EF7A /* FlappyBirdSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA6761251673B700E0EF7A /* FlappyBirdSettings.swift */; };
 		84E6EED523539B3B001B00D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EED423539B3B001B00D8 /* AppDelegate.swift */; };
 		84E6EED723539B3B001B00D8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E6EED623539B3B001B00D8 /* art.scnassets */; };
 		84E6EED923539B3B001B00D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EED823539B3B001B00D8 /* ViewController.swift */; };
@@ -48,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		79F7B41884B7DF95E5B831E8 /* Pods_neblinaAR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_neblinaAR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84826CC12501419F00675E89 /* ball.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ball.mp3; sourceTree = "<group>"; };
 		84826CC52501456000675E89 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		84A35896241D39BE000AE822 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +87,10 @@
 		84D2C12C243179B00006956E /* neblina_power.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neblina_power.h; sourceTree = "<group>"; };
 		84D5131D243D58B70012D52D /* SensorDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorDetailViewController.swift; sourceTree = "<group>"; };
 		84DA67492513A56700E0EF7A /* downPipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downPipe.png; sourceTree = "<group>"; };
+		84DA674C2513C44800E0EF7A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		84DA67502513FE8000E0EF7A /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		84DA675A2516707900E0EF7A /* BreakoutSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakoutSettings.swift; sourceTree = "<group>"; };
+		84DA6761251673B700E0EF7A /* FlappyBirdSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlappyBirdSettings.swift; sourceTree = "<group>"; };
 		84E6EED123539B3B001B00D8 /* neblinaAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neblinaAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6EED423539B3B001B00D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84E6EED623539B3B001B00D8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -102,6 +112,8 @@
 		84FEE4BF25116B9500757CA1 /* FBbird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBbird.png; sourceTree = "<group>"; };
 		84FEE4C225116DC900757CA1 /* pipe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pipe.png; sourceTree = "<group>"; };
 		84FEE4C525116DE800757CA1 /* FlappyBird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlappyBird.swift; sourceTree = "<group>"; };
+		E36E6B2C6C5015D161563E4B /* Pods-neblinaAR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neblinaAR.debug.xcconfig"; path = "Target Support Files/Pods-neblinaAR/Pods-neblinaAR.debug.xcconfig"; sourceTree = "<group>"; };
+		E6C8AE65F150E23A9D69B7F8 /* Pods-neblinaAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neblinaAR.release.xcconfig"; path = "Target Support Files/Pods-neblinaAR/Pods-neblinaAR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D2C118243178D80006956E /* CoreBluetooth.framework in Frameworks */,
+				1672179B774B45899F0F817D /* Pods_neblinaAR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +164,7 @@
 				84B3AE3F24350416008FB6B6 /* ControllerNeblinaExtension.swift */,
 				84B4AA44250A758E003F3A54 /* ChooseGameViewController.swift */,
 				84B4AA46250A75A6003F3A54 /* ChooseLevelViewController.swift */,
+				84DA674C2513C44800E0EF7A /* SettingsTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -159,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				84D2C117243178D80006956E /* CoreBluetooth.framework */,
+				79F7B41884B7DF95E5B831E8 /* Pods_neblinaAR.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -187,12 +202,31 @@
 			path = "Neblina files";
 			sourceTree = "<group>";
 		};
+		84DA674F2513FE4700E0EF7A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				84B3AE63243D4D80008FB6B6 /* SensorsTableViewCell.swift */,
+				84DA67502513FE8000E0EF7A /* SettingsTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		84DA67582516705800E0EF7A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				84DA675A2516707900E0EF7A /* BreakoutSettings.swift */,
+				84DA6761251673B700E0EF7A /* FlappyBirdSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		84E6EEC823539B3B001B00D8 = {
 			isa = PBXGroup;
 			children = (
 				84E6EED323539B3B001B00D8 /* neblinaAR */,
 				84E6EED223539B3B001B00D8 /* Products */,
 				84D2C116243178D80006956E /* Frameworks */,
+				C8206507CBF6587ED265F629 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,6 +241,7 @@
 		84E6EED323539B3B001B00D8 /* neblinaAR */ = {
 			isa = PBXGroup;
 			children = (
+				84DA67582516705800E0EF7A /* Models */,
 				84FEE4BB25116ADB00757CA1 /* FlappyBird */,
 				84FEE4A2250A9D3D00757CA1 /* Breakout */,
 				84826CC0250129E300675E89 /* Resources */,
@@ -214,12 +249,12 @@
 				84D2C119243179B00006956E /* Neblina files */,
 				84A358A1241EA061000AE822 /* ViewControllers */,
 				84E6EED423539B3B001B00D8 /* AppDelegate.swift */,
+				84DA674F2513FE4700E0EF7A /* Cells */,
 				84E6EED623539B3B001B00D8 /* art.scnassets */,
 				84E6EEDA23539B3B001B00D8 /* Main.storyboard */,
 				84E6EEDD23539B41001B00D8 /* Assets.xcassets */,
 				84E6EEDF23539B41001B00D8 /* LaunchScreen.storyboard */,
 				84E6EEE223539B41001B00D8 /* Info.plist */,
-				84B3AE63243D4D80008FB6B6 /* SensorsTableViewCell.swift */,
 				84FEE4B9250BC4E400757CA1 /* SKButton.swift */,
 			);
 			path = neblinaAR;
@@ -248,6 +283,15 @@
 			path = FlappyBird;
 			sourceTree = "<group>";
 		};
+		C8206507CBF6587ED265F629 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E36E6B2C6C5015D161563E4B /* Pods-neblinaAR.debug.xcconfig */,
+				E6C8AE65F150E23A9D69B7F8 /* Pods-neblinaAR.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -255,9 +299,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84E6EEE523539B41001B00D8 /* Build configuration list for PBXNativeTarget "neblinaAR" */;
 			buildPhases = (
+				89154156C1CA2EF432A344C7 /* [CP] Check Pods Manifest.lock */,
 				84E6EECD23539B3B001B00D8 /* Sources */,
 				84E6EECE23539B3B001B00D8 /* Frameworks */,
 				84E6EECF23539B3B001B00D8 /* Resources */,
+				2FD15CC51FF75DA9F19CE45C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -330,16 +376,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2FD15CC51FF75DA9F19CE45C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-neblinaAR/Pods-neblinaAR-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-neblinaAR/Pods-neblinaAR-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-neblinaAR/Pods-neblinaAR-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89154156C1CA2EF432A344C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-neblinaAR-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84E6EECD23539B3B001B00D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				84D2C131243179B00006956E /* NeblinaControl.swift in Sources */,
+				84DA6762251673B700E0EF7A /* FlappyBirdSettings.swift in Sources */,
 				84A3589D241E8720000AE822 /* UIButtonX.swift in Sources */,
 				84B3AE4024350416008FB6B6 /* ControllerNeblinaExtension.swift in Sources */,
 				84B4AA47250A75A6003F3A54 /* ChooseLevelViewController.swift in Sources */,
 				84B4AA45250A758E003F3A54 /* ChooseGameViewController.swift in Sources */,
+				84DA675B2516707900E0EF7A /* BreakoutSettings.swift in Sources */,
 				84D2C12F243179B00006956E /* CGContext+GraphLines.swift in Sources */,
 				84A35897241D39BF000AE822 /* MainViewController.swift in Sources */,
 				84FEE4C625116DE800757CA1 /* FlappyBird.swift in Sources */,
@@ -351,7 +441,9 @@
 				84FEE4A9250A9E0E00757CA1 /* GameScene.swift in Sources */,
 				84E6EED923539B3B001B00D8 /* ViewController.swift in Sources */,
 				84E6EED523539B3B001B00D8 /* AppDelegate.swift in Sources */,
+				84DA674D2513C44800E0EF7A /* SettingsTableViewController.swift in Sources */,
 				84A358A0241E8720000AE822 /* UIButtonX2.swift in Sources */,
+				84DA67512513FE8000E0EF7A /* SettingsTableViewCell.swift in Sources */,
 				84B3AE64243D4D80008FB6B6 /* SensorsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,6 +586,7 @@
 		};
 		84E6EEE623539B41001B00D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E36E6B2C6C5015D161563E4B /* Pods-neblinaAR.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ADDRESS_SANITIZER_CONTAINER_OVERFLOW = NO;
@@ -514,6 +607,7 @@
 		};
 		84E6EEE723539B41001B00D8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6C8AE65F150E23A9D69B7F8 /* Pods-neblinaAR.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ADDRESS_SANITIZER_CONTAINER_OVERFLOW = NO;

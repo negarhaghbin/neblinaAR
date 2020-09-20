@@ -50,7 +50,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="2lH-8e-KAx" kind="show" identifier="showSettings" id="n98-F8-fum"/>
+                                            <segue destination="6GF-mg-mKs" kind="show" id="DMQ-Ff-0Em"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -79,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XpR-9N-cLW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3601" y="-388"/>
+            <point key="canvasLocation" x="-3678" y="-806"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -90,7 +90,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pause" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88s-od-59B">
-                                <rect key="frame" x="75" y="399.5" width="264" height="97.5"/>
+                                <rect key="frame" x="73.5" y="392" width="267" height="112"/>
                                 <fontDescription key="fontDescription" name="ArcadeClassic" family="ArcadeClassic" pointSize="96"/>
                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -221,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="320" y="591"/>
+            <point key="canvasLocation" x="1228.985507246377" y="590.625"/>
         </scene>
         <!--Choose Game View Controller-->
         <scene sceneID="i6v-re-HOp">
@@ -442,6 +442,91 @@
             </objects>
             <point key="canvasLocation" x="-1525" y="-806"/>
         </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="bYL-Ed-TId">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="6GF-mg-mKs" customClass="SettingsTableViewController" customModule="neblinaAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KCV-m5-sHj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQ5-hA-Lei">
+                                <rect key="frame" x="20" y="64" width="21.5" height="30"/>
+                                <fontDescription key="fontDescription" name="ArcadeClassic" family="ArcadeClassic" pointSize="24"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="chevron.left" catalog="system">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="large">
+                                        <fontDescription key="fontDescription" name="ArcadeClassic" family="ArcadeClassic" pointSize="25"/>
+                                    </preferredSymbolConfiguration>
+                                </state>
+                                <connections>
+                                    <action selector="goBack:" destination="2lH-8e-KAx" eventType="touchUpInside" id="Xg0-V0-AHu"/>
+                                    <action selector="goBack:" destination="6GF-mg-mKs" eventType="touchUpInside" id="ok7-aa-WFu"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ldc-bN-x41">
+                                <rect key="frame" x="0.0" y="94" width="414" height="802"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsCell" id="MlM-cs-Jxp" customClass="SettingsTableViewCell" customModule="neblinaAR" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MlM-cs-Jxp" id="SGd-Sy-Rid">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.10000000149011612" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="uoc-IP-M1j">
+                                                    <rect key="frame" x="185" y="7" width="171" height="31"/>
+                                                    <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="maximumTrackTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <action selector="sliderChanged:" destination="6GF-mg-mKs" eventType="valueChanged" id="AJf-Sl-ljr"/>
+                                                    </connections>
+                                                </slider>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="uoc-IP-M1j" firstAttribute="leading" secondItem="SGd-Sy-Rid" secondAttribute="centerX" id="JQa-xb-fNg"/>
+                                                <constraint firstItem="uoc-IP-M1j" firstAttribute="centerY" secondItem="SGd-Sy-Rid" secondAttribute="centerY" id="d9c-aQ-4zT"/>
+                                                <constraint firstAttribute="trailing" secondItem="uoc-IP-M1j" secondAttribute="trailing" constant="20" id="r4F-7U-scW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="slider" destination="uoc-IP-M1j" id="mBe-hZ-U4j"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="6GF-mg-mKs" id="2pi-d0-pHn"/>
+                                    <outlet property="delegate" destination="6GF-mg-mKs" id="ksh-q7-FNQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GPw-GU-aeq"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yQ5-hA-Lei" firstAttribute="leading" secondItem="GPw-GU-aeq" secondAttribute="leading" constant="20" id="231-hn-Tpk"/>
+                            <constraint firstItem="yQ5-hA-Lei" firstAttribute="top" secondItem="GPw-GU-aeq" secondAttribute="top" constant="20" id="Bnz-PT-4jt"/>
+                            <constraint firstItem="Ldc-bN-x41" firstAttribute="leading" secondItem="GPw-GU-aeq" secondAttribute="leading" id="GYn-py-Dry"/>
+                            <constraint firstAttribute="bottom" secondItem="Ldc-bN-x41" secondAttribute="bottom" id="J0Y-O9-byo"/>
+                            <constraint firstItem="Ldc-bN-x41" firstAttribute="trailing" secondItem="GPw-GU-aeq" secondAttribute="trailing" id="NAZ-Xi-Kxz"/>
+                            <constraint firstItem="Ldc-bN-x41" firstAttribute="top" secondItem="yQ5-hA-Lei" secondAttribute="bottom" id="Uo6-Fg-MLy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="s2E-8t-GLz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c3Z-fE-Pg7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3678" y="-3"/>
+        </scene>
         <!--Sensors Table View Controller-->
         <scene sceneID="BWF-Zj-l1K">
             <objects>
@@ -554,7 +639,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXW-8I-aqz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1957" y="133"/>
+            <point key="canvasLocation" x="-1047.8260869565217" y="132.58928571428572"/>
         </scene>
         <!--Sensor Detail View Controller-->
         <scene sceneID="KWE-9O-bIh">
@@ -634,7 +719,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0e-uS-Ras" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="319" y="-194"/>
+            <point key="canvasLocation" x="1228.985507246377" y="-194.19642857142856"/>
         </scene>
     </scenes>
     <designables>
