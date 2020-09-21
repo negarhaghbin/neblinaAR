@@ -31,6 +31,9 @@
 		84DA67512513FE8000E0EF7A /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA67502513FE8000E0EF7A /* SettingsTableViewCell.swift */; };
 		84DA675B2516707900E0EF7A /* BreakoutSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA675A2516707900E0EF7A /* BreakoutSettings.swift */; };
 		84DA6762251673B700E0EF7A /* FlappyBirdSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA6761251673B700E0EF7A /* FlappyBirdSettings.swift */; };
+		84DA67692518E7AC00E0EF7A /* CGVectorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA67682518E7AC00E0EF7A /* CGVectorExtension.swift */; };
+		84DA676D2518F2E200E0EF7A /* left.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84DA676B2518F2E200E0EF7A /* left.mp3 */; };
+		84DA676E2518F2E200E0EF7A /* right.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84DA676C2518F2E200E0EF7A /* right.mp3 */; };
 		84E6EED523539B3B001B00D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EED423539B3B001B00D8 /* AppDelegate.swift */; };
 		84E6EED723539B3B001B00D8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E6EED623539B3B001B00D8 /* art.scnassets */; };
 		84E6EED923539B3B001B00D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EED823539B3B001B00D8 /* ViewController.swift */; };
@@ -91,6 +94,9 @@
 		84DA67502513FE8000E0EF7A /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		84DA675A2516707900E0EF7A /* BreakoutSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakoutSettings.swift; sourceTree = "<group>"; };
 		84DA6761251673B700E0EF7A /* FlappyBirdSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlappyBirdSettings.swift; sourceTree = "<group>"; };
+		84DA67682518E7AC00E0EF7A /* CGVectorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVectorExtension.swift; sourceTree = "<group>"; };
+		84DA676B2518F2E200E0EF7A /* left.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = left.mp3; sourceTree = "<group>"; };
+		84DA676C2518F2E200E0EF7A /* right.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = right.mp3; sourceTree = "<group>"; };
 		84E6EED123539B3B001B00D8 /* neblinaAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neblinaAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6EED423539B3B001B00D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84E6EED623539B3B001B00D8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -132,6 +138,8 @@
 		84826CC0250129E300675E89 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84DA676B2518F2E200E0EF7A /* left.mp3 */,
+				84DA676C2518F2E200E0EF7A /* right.mp3 */,
 				84DA67492513A56700E0EF7A /* downPipe.png */,
 				84FEE4C225116DC900757CA1 /* pipe.png */,
 				84FEE4BE25116B9500757CA1 /* FBbackground.png */,
@@ -256,6 +264,7 @@
 				84E6EEDF23539B41001B00D8 /* LaunchScreen.storyboard */,
 				84E6EEE223539B41001B00D8 /* Info.plist */,
 				84FEE4B9250BC4E400757CA1 /* SKButton.swift */,
+				84DA67682518E7AC00E0EF7A /* CGVectorExtension.swift */,
 			);
 			path = neblinaAR;
 			sourceTree = "<group>";
@@ -353,7 +362,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FEE4B7250A9FD400757CA1 /* BOLevel3.sks in Resources */,
+				84DA676D2518F2E200E0EF7A /* left.mp3 in Resources */,
 				84FEE4B6250A9FD400757CA1 /* BOLevel5.sks in Resources */,
+				84DA676E2518F2E200E0EF7A /* right.mp3 in Resources */,
 				84FEE4A4250A9D7900757CA1 /* BOLevel2.sks in Resources */,
 				84E6EED723539B3B001B00D8 /* art.scnassets in Resources */,
 				84826CC3250141A000675E89 /* ball.mp3 in Resources */,
@@ -440,6 +451,7 @@
 				84B3AE3E24327DF2008FB6B6 /* SensorsTableViewController.swift in Sources */,
 				84FEE4A9250A9E0E00757CA1 /* GameScene.swift in Sources */,
 				84E6EED923539B3B001B00D8 /* ViewController.swift in Sources */,
+				84DA67692518E7AC00E0EF7A /* CGVectorExtension.swift in Sources */,
 				84E6EED523539B3B001B00D8 /* AppDelegate.swift in Sources */,
 				84DA674D2513C44800E0EF7A /* SettingsTableViewController.swift in Sources */,
 				84A358A0241E8720000AE822 /* UIButtonX2.swift in Sources */,

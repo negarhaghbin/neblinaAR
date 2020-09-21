@@ -13,6 +13,14 @@ var player = SKSpriteNode()
 var score = 0
 var currentLevel = LevelSceneNames.level1.rawValue
 
+enum Movement{
+    case up
+    case down
+    case right
+    case left
+    case none
+}
+
 class GameScene: SKScene {
     
     var blocks :[SKSpriteNode] = [SKSpriteNode]()
@@ -22,6 +30,9 @@ class GameScene: SKScene {
     var scoreResultsLbl = SKLabelNode()
     let nextLevelButton = SKButton()
     let addImpulseButton = SKButton()
+    var said = false
+    let leftSound = SKAction.playSoundFileNamed("left.mp3", waitForCompletion: true)
+    let rightSound = SKAction.playSoundFileNamed("right.mp3", waitForCompletion: true)
     
     override func didMove(to view: SKView) {
         startGame()
@@ -133,10 +144,20 @@ class GameScene: SKScene {
     
     @objc func addImpulse() {
         if (abs((ball.physicsBody?.velocity.dx)!) < abs((ball.physicsBody?.velocity.dy)!)){
-            ball.physicsBody?.applyImpulse(CGVector(dx: 5, dy: 0))
+            if (ball.physicsBody?.velocity.dx)! > 0{
+                ball.physicsBody?.applyImpulse(CGVector(dx: 5, dy: 0))
+            }
+            else{
+                ball.physicsBody?.applyImpulse(CGVector(dx: -5, dy: 0))
+            }
         }
         else{
-            ball.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5))
+            if (ball.physicsBody?.velocity.dy)! > 0 {
+                ball.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5))
+            }
+            else{
+                ball.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -5))
+            }
         }
     }
   
@@ -175,10 +196,75 @@ class GameScene: SKScene {
         }
     }
     
+    private func rayCast(start: CGPoint, direction: CGVector) -> (destination:CGPoint, normal: CGVector)? {
+
+            let endVector = CGVector(
+                dx: start.x + direction.normalized().dx * 4000,
+                dy: start.y + direction.normalized().dy * 4000
+            )
+
+            let endPoint = CGPoint(x: endVector.dx, y: endVector.dy)
+
+            var closestPoint: CGPoint?
+            var normal: CGVector?
+
+            physicsWorld.enumerateBodies(alongRayStart: start, end: endPoint) {
+                (physicsBody:SKPhysicsBody,
+                point:CGPoint,
+                normalVector:CGVector,
+                stop:UnsafeMutablePointer<ObjCBool>) in
+
+                guard start.distanceTo(point) > 1 else {
+                    return
+                }
+
+                guard let newClosestPoint = closestPoint else {
+                    closestPoint = point
+                    normal = normalVector
+                    return
+                }
+
+                guard start.distanceTo(point) < start.distanceTo(newClosestPoint) else {
+                    return
+                }
+
+                normal = normalVector
+            }
+            guard let p = closestPoint, let n = normal else { return nil }
+            return (p, n)
+        }
     
     override func update(_ currentTime: TimeInterval) {
         if ball.position.y < player.position.y - player.size.height / 2{
             finishGame(result: "You Lost!")
+        }
+        if (ball.physicsBody?.velocity.dy)! > 0{
+            said = false
+        }
+        if ((ball.physicsBody?.velocity.dy)! < 0) && !said{
+            guard let collision = rayCast(start: ball.position, direction: ball.physicsBody!.velocity.normalized()) else { return }
+            if collision.destination.y < player.position.y {
+                if paddleMovement(point: collision.destination) == .left{
+                    ball.run(leftSound)
+                }
+                else if paddleMovement(point: collision.destination) == .right{
+                    ball.run(rightSound)
+                }
+                said = true
+            }
+        }
+        
+    }
+    
+    func paddleMovement(point: CGPoint)->Movement{
+        if point.x < (player.position.x - (player.size.width / 2)){
+            return .left
+        }
+        else if point.x > (player.position.x + (player.size.width / 2)){
+            return .right
+        }
+        else{
+            return .none
         }
     }
     
