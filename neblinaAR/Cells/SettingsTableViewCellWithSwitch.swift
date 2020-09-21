@@ -1,16 +1,16 @@
 //
-//  SettingsTableViewCell.swift
+//  SettingsTableViewCellWithSwitch.swift
 //  neblinaAR
 //
-//  Created by Negar on 2020-09-17.
+//  Created by Negar on 2020-09-21.
 //  Copyright © 2020 Negar. All rights reserved.
 //
 
 import UIKit
 
-class SettingsTableViewCell: UITableViewCell {
-    static let identifier = "settingsCell"
-    @IBOutlet weak var slider: UISlider!
+class SettingsTableViewCellWithSwitch: UITableViewCell {
+    static let identifier = "settingsCellWithSwitch"
+    @IBOutlet weak var `switch`: UISwitch!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

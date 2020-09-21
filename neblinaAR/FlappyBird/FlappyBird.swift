@@ -26,6 +26,7 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
     var pipes = [SKSpriteNode]()
     
     var said = false
+    var isAudioFeedbackOn = FlappyBirdSettings.get().isAudioOn
     let upSound = SKAction.playSoundFileNamed("up.mp3", waitForCompletion: true)
     let downSound = SKAction.playSoundFileNamed("down.mp3", waitForCompletion: true)
     
@@ -135,7 +136,7 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
         pipe.run(SKAction.sequence([actionMove, actionMoveDone]))
     }
     
-    func birdMovement(pipe: SKSpriteNode)->Movement{
+    private func birdMovement(pipe: SKSpriteNode)->Movement{
         if pipe.name == "pipeFacingDown"{
             if (bird.position.y + bird.size.height / 2) > (pipe.position.y - pipe.size.height/2){
                 return .down
@@ -154,25 +155,26 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
              finishGame()
         }
         
-        if pipes.count > 0{
-            if pipes[0].position.x > bird.position.x{
-                if !said{
-                    if birdMovement(pipe: pipes[0]) == .up{
-                        bird.run(upSound)
-                        said = true
-                    }
-                    else if birdMovement(pipe: pipes[0]) == .down{
-                        bird.run(downSound)
-                        said = true
+        if isAudioFeedbackOn{
+            if pipes.count > 0{
+                if pipes[0].position.x > bird.position.x{
+                    if !said{
+                        if birdMovement(pipe: pipes[0]) == .up{
+                            bird.run(upSound)
+                            said = true
+                        }
+                        else if birdMovement(pipe: pipes[0]) == .down{
+                            bird.run(downSound)
+                            said = true
+                        }
                     }
                 }
-            }
-            else{
-                pipes.removeFirst()
-                said = false
+                else{
+                    pipes.removeFirst()
+                    said = false
+                }
             }
         }
-        
         
     }
     

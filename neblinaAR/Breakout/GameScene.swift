@@ -30,6 +30,8 @@ class GameScene: SKScene {
     var scoreResultsLbl = SKLabelNode()
     let nextLevelButton = SKButton()
     let addImpulseButton = SKButton()
+    
+    var isAudioFeedbackOn = BreakoutSettings.get().isAudioOn
     var said = false
     let leftSound = SKAction.playSoundFileNamed("left.mp3", waitForCompletion: true)
     let rightSound = SKAction.playSoundFileNamed("right.mp3", waitForCompletion: true)
@@ -237,22 +239,23 @@ class GameScene: SKScene {
         if ball.position.y < player.position.y - player.size.height / 2{
             finishGame(result: "You Lost!")
         }
-        if (ball.physicsBody?.velocity.dy)! > 0{
-            said = false
-        }
-        if ((ball.physicsBody?.velocity.dy)! < 0) && !said{
-            guard let collision = rayCast(start: ball.position, direction: ball.physicsBody!.velocity.normalized()) else { return }
-            if collision.destination.y < player.position.y {
-                if paddleMovement(point: collision.destination) == .left{
-                    ball.run(leftSound)
+        if isAudioFeedbackOn{
+            if (ball.physicsBody?.velocity.dy)! > 0{
+                said = false
+            }
+            if ((ball.physicsBody?.velocity.dy)! < 0) && !said{
+                guard let collision = rayCast(start: ball.position, direction: ball.physicsBody!.velocity.normalized()) else { return }
+                if collision.destination.y < player.position.y {
+                    if paddleMovement(point: collision.destination) == .left{
+                        ball.run(leftSound)
+                    }
+                    else if paddleMovement(point: collision.destination) == .right{
+                        ball.run(rightSound)
+                    }
+                    said = true
                 }
-                else if paddleMovement(point: collision.destination) == .right{
-                    ball.run(rightSound)
-                }
-                said = true
             }
         }
-        
     }
     
     func paddleMovement(point: CGPoint)->Movement{
