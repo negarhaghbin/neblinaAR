@@ -23,6 +23,11 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
     var scoreResultLbl = SKLabelNode()
     var scoreLbl = SKLabelNode()
     let tryAgainButton = SKButton()
+    var pipes = [SKSpriteNode]()
+    
+    var said = false
+    let upSound = SKAction.playSoundFileNamed("up.mp3", waitForCompletion: true)
+    let downSound = SKAction.playSoundFileNamed("down.mp3", waitForCompletion: true)
     
     override func didMove(to view: SKView) {
         bird = self.childNode(withName: "bird") as! SKSpriteNode
@@ -105,11 +110,14 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
             pipe = SKSpriteNode(imageNamed: "downPipe")
             actualY = random(min: size.height/2 - pipe.size.height/2, max: size.height/2)
             pipe.position = CGPoint(x: size.width + pipe.size.width/2, y: actualY)
+            pipe.name = "pipeFacingDown"
         }
         else{
+            pipe.name = "pipeFacingUp"
             actualY = random(min: -size.height/2, max: -size.height/2 + pipe.size.height/2)
             pipe.position = CGPoint(x: size.width + pipe.size.width/2, y: actualY)
         }
+        
         
         pipe.physicsBody = SKPhysicsBody(rectangleOf: pipe.size)
         pipe.physicsBody?.isDynamic = false
@@ -118,6 +126,7 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
         pipe.physicsBody?.collisionBitMask = PhysicsCategory.bird.rawValue
         
         addChild(pipe)
+        pipes.append(pipe)
       
         let actualDuration = CGFloat((2-FlappyBirdSettings.get().speed) * 4.0)
       
@@ -126,10 +135,45 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
         pipe.run(SKAction.sequence([actionMove, actionMoveDone]))
     }
     
+    func birdMovement(pipe: SKSpriteNode)->Movement{
+        if pipe.name == "pipeFacingDown"{
+            if (bird.position.y + bird.size.height / 2) > (pipe.position.y - pipe.size.height/2){
+                return .down
+            }
+        }
+        else{
+            if (bird.position.y - bird.size.height / 2) < (pipe.position.y + pipe.size.height/2){
+                return .up
+            }
+        }
+        return .none
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         if bird.position.x < -size.width/2 {
              finishGame()
         }
+        
+        if pipes.count > 0{
+            if pipes[0].position.x > bird.position.x{
+                if !said{
+                    if birdMovement(pipe: pipes[0]) == .up{
+                        bird.run(upSound)
+                        said = true
+                    }
+                    else if birdMovement(pipe: pipes[0]) == .down{
+                        bird.run(downSound)
+                        said = true
+                    }
+                }
+            }
+            else{
+                pipes.removeFirst()
+                said = false
+            }
+        }
+        
+        
     }
     
     func finishGame(){

@@ -197,42 +197,41 @@ class GameScene: SKScene {
     }
     
     private func rayCast(start: CGPoint, direction: CGVector) -> (destination:CGPoint, normal: CGVector)? {
+        let endVector = CGVector(
+            dx: start.x + direction.normalized().dx * 4000,
+            dy: start.y + direction.normalized().dy * 4000
+        )
 
-            let endVector = CGVector(
-                dx: start.x + direction.normalized().dx * 4000,
-                dy: start.y + direction.normalized().dy * 4000
-            )
+        let endPoint = CGPoint(x: endVector.dx, y: endVector.dy)
 
-            let endPoint = CGPoint(x: endVector.dx, y: endVector.dy)
+        var closestPoint: CGPoint?
+        var normal: CGVector?
 
-            var closestPoint: CGPoint?
-            var normal: CGVector?
+        physicsWorld.enumerateBodies(alongRayStart: start, end: endPoint) {
+            (physicsBody:SKPhysicsBody,
+            point:CGPoint,
+            normalVector:CGVector,
+            stop:UnsafeMutablePointer<ObjCBool>) in
 
-            physicsWorld.enumerateBodies(alongRayStart: start, end: endPoint) {
-                (physicsBody:SKPhysicsBody,
-                point:CGPoint,
-                normalVector:CGVector,
-                stop:UnsafeMutablePointer<ObjCBool>) in
-
-                guard start.distanceTo(point) > 1 else {
-                    return
-                }
-
-                guard let newClosestPoint = closestPoint else {
-                    closestPoint = point
-                    normal = normalVector
-                    return
-                }
-
-                guard start.distanceTo(point) < start.distanceTo(newClosestPoint) else {
-                    return
-                }
-
-                normal = normalVector
+            guard start.distanceTo(point) > 1 else {
+                return
             }
-            guard let p = closestPoint, let n = normal else { return nil }
-            return (p, n)
+
+            guard let newClosestPoint = closestPoint else {
+                closestPoint = point
+                normal = normalVector
+                return
+            }
+
+            guard start.distanceTo(point) < start.distanceTo(newClosestPoint) else {
+                return
+            }
+
+            normal = normalVector
         }
+        guard let p = closestPoint, let n = normal else { return nil }
+        return (p, n)
+    }
     
     override func update(_ currentTime: TimeInterval) {
         if ball.position.y < player.position.y - player.size.height / 2{

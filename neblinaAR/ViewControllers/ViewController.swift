@@ -49,7 +49,7 @@ class ViewController: UIViewController{
     var timer = Timer()
     var sensorData = (Float(0.0),Float(0.0),Float(0.0),Float(0.0))
     
-    var audioPlayer = AVAudioPlayer()
+//    var audioPlayer = AVAudioPlayer()
     
 //    @IBOutlet weak var messageView: UITextView!
     @IBOutlet weak var mainButton: UIButtonX!
@@ -65,14 +65,14 @@ class ViewController: UIViewController{
             scene = GameScene(fileNamed:currentLevel)!
         case .flappyBird:
             scene = FlappyBird(fileNamed: "FlappyBird")!
-            do{
-                audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "background", ofType: "mp3")!))
-                audioPlayer.numberOfLoops = -1
-                audioPlayer.prepareToPlay()
-            }
-            catch{
-                print(error)
-            }
+//            do{
+//                audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "background", ofType: "mp3")!))
+//                audioPlayer.numberOfLoops = -1
+//                audioPlayer.prepareToPlay()
+//            }
+//            catch{
+//                print(error)
+//            }
             
         }
         
@@ -122,7 +122,7 @@ class ViewController: UIViewController{
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {
             action in
              //UIApplication.shared.isIdleTimerDisabled = false
-            self.audioPlayer.stop()
+//            self.audioPlayer.stop()
             self.dismiss(animated: true, completion: nil)
             _ = self.navigationController?.popViewController(animated: true)
         }))
@@ -167,7 +167,7 @@ class ViewController: UIViewController{
         self.cancelButton.alpha = 0
         
         navigationController?.setNavigationBarHidden(true, animated: false)
-        audioPlayer.play()
+//        audioPlayer.play()
     }
     
 

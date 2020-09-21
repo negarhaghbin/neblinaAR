@@ -34,6 +34,8 @@
 		84DA67692518E7AC00E0EF7A /* CGVectorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA67682518E7AC00E0EF7A /* CGVectorExtension.swift */; };
 		84DA676D2518F2E200E0EF7A /* left.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84DA676B2518F2E200E0EF7A /* left.mp3 */; };
 		84DA676E2518F2E200E0EF7A /* right.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84DA676C2518F2E200E0EF7A /* right.mp3 */; };
+		84DA677225190C6A00E0EF7A /* up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84DA677025190C6A00E0EF7A /* up.mp3 */; };
+		84DA677325190C6A00E0EF7A /* down.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84DA677125190C6A00E0EF7A /* down.mp3 */; };
 		84E6EED523539B3B001B00D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EED423539B3B001B00D8 /* AppDelegate.swift */; };
 		84E6EED723539B3B001B00D8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E6EED623539B3B001B00D8 /* art.scnassets */; };
 		84E6EED923539B3B001B00D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E6EED823539B3B001B00D8 /* ViewController.swift */; };
@@ -97,6 +99,8 @@
 		84DA67682518E7AC00E0EF7A /* CGVectorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVectorExtension.swift; sourceTree = "<group>"; };
 		84DA676B2518F2E200E0EF7A /* left.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = left.mp3; sourceTree = "<group>"; };
 		84DA676C2518F2E200E0EF7A /* right.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = right.mp3; sourceTree = "<group>"; };
+		84DA677025190C6A00E0EF7A /* up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = up.mp3; sourceTree = "<group>"; };
+		84DA677125190C6A00E0EF7A /* down.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = down.mp3; sourceTree = "<group>"; };
 		84E6EED123539B3B001B00D8 /* neblinaAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neblinaAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6EED423539B3B001B00D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84E6EED623539B3B001B00D8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 		84826CC0250129E300675E89 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84DA677125190C6A00E0EF7A /* down.mp3 */,
+				84DA677025190C6A00E0EF7A /* up.mp3 */,
 				84DA676B2518F2E200E0EF7A /* left.mp3 */,
 				84DA676C2518F2E200E0EF7A /* right.mp3 */,
 				84DA67492513A56700E0EF7A /* downPipe.png */,
@@ -372,6 +378,7 @@
 				84B4AA43250A6BB6003F3A54 /* ball.png in Resources */,
 				84E6EEE123539B41001B00D8 /* LaunchScreen.storyboard in Resources */,
 				84FEE4B8250A9FD400757CA1 /* BOLevel6.sks in Resources */,
+				84DA677225190C6A00E0EF7A /* up.mp3 in Resources */,
 				84B4AA3F250934F6003F3A54 /* ARCADECLASSIC.TTF in Resources */,
 				84E6EEDE23539B41001B00D8 /* Assets.xcassets in Resources */,
 				84FEE4C325116DC900757CA1 /* pipe.png in Resources */,
@@ -379,6 +386,7 @@
 				84FEE4C125116B9500757CA1 /* FBbird.png in Resources */,
 				84FEE4BD25116AF900757CA1 /* FlappyBird.sks in Resources */,
 				84DA674A2513A56700E0EF7A /* downPipe.png in Resources */,
+				84DA677325190C6A00E0EF7A /* down.mp3 in Resources */,
 				84E6EEDC23539B3B001B00D8 /* Main.storyboard in Resources */,
 				84FEE4B5250A9FD400757CA1 /* BOLevel4.sks in Resources */,
 				84826CC62501456000675E89 /* background.mp3 in Resources */,
