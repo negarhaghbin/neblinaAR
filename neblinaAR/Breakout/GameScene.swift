@@ -30,11 +30,12 @@ class GameScene: SKScene {
     var scoreResultsLbl = SKLabelNode()
     let nextLevelButton = SKButton()
     let addImpulseButton = SKButton()
+    var arrow = SKSpriteNode()
     
     //var isAudioFeedbackOn = BreakoutSettings.get().isAudioOn
     var said = false
-    let leftSound = SKAction.playSoundFileNamed("left.mp3", waitForCompletion: true)
-    let rightSound = SKAction.playSoundFileNamed("right.mp3", waitForCompletion: true)
+    let leftSound = SKAction.playSoundFileNamed("left.mp3", waitForCompletion: false)
+    let rightSound = SKAction.playSoundFileNamed("right.mp3", waitForCompletion: false)
     
     override func didMove(to view: SKView) {
         startGame()
@@ -60,6 +61,11 @@ class GameScene: SKScene {
         self.physicsBody = border
         
         physicsWorld.contactDelegate = self
+        
+//        let showArrow = SKAction.run({()in self.showArrow(direction: .right)})
+//        let wait = SKAction.wait(forDuration: 5)
+//        let removeArrow = SKAction.run({() in self.removeSprite()})
+//        self.run(SKAction.sequence([showArrow, wait, removeArrow]))
     }
     
     func createPaddle(){
@@ -235,6 +241,21 @@ class GameScene: SKScene {
         return (p, n)
     }
     
+    func showArrow(direction: Movement) {
+        arrow = self.childNode(withName: "arrow") as! SKSpriteNode
+        arrow.position.x = player.position.x
+        if direction == .right{
+            arrow.texture =  SKTexture(imageNamed: "right")
+        }
+        else if direction == .left{
+            arrow.texture =  SKTexture(imageNamed: "left")
+        }
+        arrow.isHidden = false
+    }
+    func hideSprite() {
+       arrow.isHidden = true
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         if ball.position.y < player.position.y - player.size.height / 2{
             finishGame(result: "You Lost!")
@@ -248,9 +269,19 @@ class GameScene: SKScene {
                 if collision.destination.y < player.position.y {
                     if paddleMovement(point: collision.destination) == .left{
                         ball.run(leftSound)
+                        let showArrow = SKAction.run({()in self.showArrow(direction: .left)})
+                        let wait = SKAction.wait(forDuration: 5)
+                        let removeArrow = SKAction.run({() in self.hideSprite()})
+                        self.run(SKAction.sequence([showArrow, wait, removeArrow]))
+                        
                     }
                     else if paddleMovement(point: collision.destination) == .right{
                         ball.run(rightSound)
+                        let showArrow = SKAction.run({()in self.showArrow(direction: .right)})
+                        let wait = SKAction.wait(forDuration: 5)
+                        let removeArrow = SKAction.run({() in self.hideSprite()})
+                        self.run(SKAction.sequence([showArrow, wait, removeArrow]))
+                        
                     }
                     said = true
                 }

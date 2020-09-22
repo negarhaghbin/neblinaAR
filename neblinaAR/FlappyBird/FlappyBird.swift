@@ -24,6 +24,7 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
     var scoreLbl = SKLabelNode()
     let tryAgainButton = SKButton()
     var pipes = [SKSpriteNode]()
+    var arrow = SKSpriteNode()
     
     var said = false
 //    var isAudioFeedbackOn = FlappyBirdSettings.get().isAudioOn
@@ -150,6 +151,23 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
         return .none
     }
     
+    func showArrow(direction: Movement) {
+        arrow = self.childNode(withName: "arrow") as! SKSpriteNode
+        arrow.position.y = bird.position.y
+        arrow.position.x = bird.position.x + 80
+        arrow.zPosition = 1
+        if direction == .up{
+            arrow.texture =  SKTexture(imageNamed: "up")
+        }
+        else if direction == .down{
+            arrow.texture =  SKTexture(imageNamed: "down")
+        }
+        arrow.isHidden = false
+    }
+    func hideSprite() {
+       arrow.isHidden = true
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         if bird.position.x < -size.width/2 {
              finishGame()
@@ -161,10 +179,18 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
                     if !said{
                         if birdMovement(pipe: pipes[0]) == .up{
                             bird.run(upSound)
+                            let showArrow = SKAction.run({()in self.showArrow(direction: .up)})
+                            let wait = SKAction.wait(forDuration: 3)
+                            let removeArrow = SKAction.run({() in self.hideSprite()})
+                            self.run(SKAction.sequence([showArrow, wait, removeArrow]))
                             said = true
                         }
                         else if birdMovement(pipe: pipes[0]) == .down{
                             bird.run(downSound)
+                            let showArrow = SKAction.run({()in self.showArrow(direction: .down)})
+                            let wait = SKAction.wait(forDuration: 3)
+                            let removeArrow = SKAction.run({() in self.hideSprite()})
+                            self.run(SKAction.sequence([showArrow, wait, removeArrow]))
                             said = true
                         }
                     }
