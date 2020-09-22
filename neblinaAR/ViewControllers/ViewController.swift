@@ -63,8 +63,17 @@ class ViewController: UIViewController{
         switch currentGame {
         case .breakOut:
             scene = GameScene(fileNamed:currentLevel)!
+            let audioFeedback = BreakoutSettings.get().isAudioOn
+            audioFeedback ?
+                soundButton.setImage(UIImage(systemName: "speaker.slash"), for: .normal) :
+                soundButton.setImage(UIImage(systemName: "speaker.2"), for: .normal)
+            
         case .flappyBird:
             scene = FlappyBird(fileNamed: "FlappyBird")!
+            let audioFeedback = FlappyBirdSettings.get().isAudioOn
+            audioFeedback ?
+                soundButton.setImage(UIImage(systemName: "speaker.slash"), for: .normal) :
+                soundButton.setImage(UIImage(systemName: "speaker.2"), for: .normal)
 //            do{
 //                audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "background", ofType: "mp3")!))
 //                audioPlayer.numberOfLoops = -1
@@ -77,39 +86,9 @@ class ViewController: UIViewController{
         }
         
         let skView = self.view as! SKView
-//        skView.showsFPS = true
-//        skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .aspectFill
         scene.size = view.bounds.size
-        
-        // MARK: Message
-//        messageView.text="Ready, Set, Go!"
-//        messageView.layer.cornerRadius = 15.0
-//        let deadSpace = messageView.bounds.size.height - messageView.contentSize.height
-//        let inset = max(0, deadSpace/2.0)
-//        messageView.contentInset = UIEdgeInsets(top: inset, left: messageView.contentInset.left, bottom: inset, right: messageView.contentInset.right)
-        
-        // MARK: code e jadid
-        //for external force uncomment it
-//        nebdev!.streamMotionState(false)
-//        nebdev!.streamExternalForce(true)
-//        nebdev!.streamEulerAngle(false)
-//        heading = false
-//        prevTimeStamp = 0
-//        nebdev!.streamQuaternion(false)
-        
-        //for Quaternion uncomment it
-        /*
-        nebdev!.streamEulerAngle(false)
-        heading = false
-        prevTimeStamp = 0
-        nebdev!.streamQuaternion(true)*/
-        
-        //for Acc uncomment it
-//        nebdev!.sensorStreamAccelData(true)
-        
-        //for yaw uncomment it
         nebdev!.streamQuaternion(false)
         nebdev!.streamEulerAngle(true)
         
@@ -172,6 +151,24 @@ class ViewController: UIViewController{
     
 
     // MARK: Menu
+    @IBAction func muteUnmute(_ sender: Any) {
+        
+        switch currentGame {
+        case .breakOut:
+            let newValue = !BreakoutSettings.get().isAudioOn
+            BreakoutSettings.get().setAudioFeedback(newValue: newValue)
+            
+            newValue ?
+                soundButton.setImage(UIImage(systemName: "speaker.slash"), for: .normal) :
+                soundButton.setImage(UIImage(systemName: "speaker.2"), for: .normal)
+        case .flappyBird:
+            let newValue = !FlappyBirdSettings.get().isAudioOn
+            FlappyBirdSettings.get().setAudioFeedback(newValue: newValue)
+            newValue ?
+                soundButton.setImage(UIImage(systemName: "speaker.slash"), for: .normal) :
+                soundButton.setImage(UIImage(systemName: "speaker.2"), for: .normal)
+        }
+    }
     
     @IBAction func mainButtonAction(_ sender: Any) {
         

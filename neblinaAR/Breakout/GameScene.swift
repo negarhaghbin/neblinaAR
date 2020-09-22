@@ -31,7 +31,7 @@ class GameScene: SKScene {
     let nextLevelButton = SKButton()
     let addImpulseButton = SKButton()
     
-    var isAudioFeedbackOn = BreakoutSettings.get().isAudioOn
+    //var isAudioFeedbackOn = BreakoutSettings.get().isAudioOn
     var said = false
     let leftSound = SKAction.playSoundFileNamed("left.mp3", waitForCompletion: true)
     let rightSound = SKAction.playSoundFileNamed("right.mp3", waitForCompletion: true)
@@ -239,7 +239,7 @@ class GameScene: SKScene {
         if ball.position.y < player.position.y - player.size.height / 2{
             finishGame(result: "You Lost!")
         }
-        if isAudioFeedbackOn{
+        if BreakoutSettings.get().isAudioOn{
             if (ball.physicsBody?.velocity.dy)! > 0{
                 said = false
             }

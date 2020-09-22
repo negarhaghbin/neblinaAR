@@ -26,7 +26,7 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
     var pipes = [SKSpriteNode]()
     
     var said = false
-    var isAudioFeedbackOn = FlappyBirdSettings.get().isAudioOn
+//    var isAudioFeedbackOn = FlappyBirdSettings.get().isAudioOn
     let upSound = SKAction.playSoundFileNamed("up.mp3", waitForCompletion: true)
     let downSound = SKAction.playSoundFileNamed("down.mp3", waitForCompletion: true)
     
@@ -155,7 +155,7 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
              finishGame()
         }
         
-        if isAudioFeedbackOn{
+        if FlappyBirdSettings.get().isAudioOn{
             if pipes.count > 0{
                 if pipes[0].position.x > bird.position.x{
                     if !said{
