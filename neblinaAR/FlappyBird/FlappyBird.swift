@@ -173,24 +173,34 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
              finishGame()
         }
         
-        if FlappyBirdSettings.get().isAudioOn{
+        if FlappyBirdSettings.get().isAudioOn || FlappyBirdSettings.get().isVisualOn{
             if pipes.count > 0{
                 if pipes[0].position.x > bird.position.x{
                     if !said{
                         if birdMovement(pipe: pipes[0]) == .up{
-                            bird.run(upSound)
-                            let showArrow = SKAction.run({()in self.showArrow(direction: .up)})
-                            let wait = SKAction.wait(forDuration: 3)
-                            let removeArrow = SKAction.run({() in self.hideSprite()})
-                            self.run(SKAction.sequence([showArrow, wait, removeArrow]))
+                            if FlappyBirdSettings.get().isAudioOn{
+                                bird.run(upSound)
+                            }
+                            
+                            if FlappyBirdSettings.get().isVisualOn{
+                                let showArrow = SKAction.run({()in self.showArrow(direction: .up)})
+                                let wait = SKAction.wait(forDuration: 3)
+                                let removeArrow = SKAction.run({() in self.hideSprite()})
+                                self.run(SKAction.sequence([showArrow, wait, removeArrow]))
+                            }
                             said = true
                         }
                         else if birdMovement(pipe: pipes[0]) == .down{
-                            bird.run(downSound)
-                            let showArrow = SKAction.run({()in self.showArrow(direction: .down)})
-                            let wait = SKAction.wait(forDuration: 3)
-                            let removeArrow = SKAction.run({() in self.hideSprite()})
-                            self.run(SKAction.sequence([showArrow, wait, removeArrow]))
+                            if FlappyBirdSettings.get().isAudioOn{
+                                bird.run(downSound)
+                            }
+                            
+                            if FlappyBirdSettings.get().isVisualOn{
+                                let showArrow = SKAction.run({()in self.showArrow(direction: .down)})
+                                let wait = SKAction.wait(forDuration: 3)
+                                let removeArrow = SKAction.run({() in self.hideSprite()})
+                                self.run(SKAction.sequence([showArrow, wait, removeArrow]))
+                            }
                             said = true
                         }
                     }

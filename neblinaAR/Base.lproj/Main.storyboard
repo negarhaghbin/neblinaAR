@@ -173,8 +173,32 @@
                                     <action selector="muteUnmute:" destination="BV1-FR-VrT" eventType="touchUpInside" id="7ZW-Vs-cWG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5h-La-qcO" customClass="UIButtonX2" customModule="neblinaAR" customModuleProvider="target">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dL3-Ux-AfE" customClass="UIButtonX2" customModule="neblinaAR" customModuleProvider="target">
                                 <rect key="frame" x="30" y="522" width="60" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="07T-8T-u09"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="9xG-sY-nwK"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="YtV-kP-UMb"/>
+                                    <constraint firstAttribute="height" constant="60" id="dfs-la-3Q4"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="eye" catalog="system">
+                                    <color key="titleColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="large" weight="bold"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isEnabledInitFromAnimation" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="enableDisableVisual:" destination="BV1-FR-VrT" eventType="touchUpInside" id="odu-hM-ZSe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5h-La-qcO" customClass="UIButtonX2" customModule="neblinaAR" customModuleProvider="target">
+                                <rect key="frame" x="30" y="432" width="60" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="MmL-wM-gTZ"/>
@@ -202,8 +226,10 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Php-Ec-PFY" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="30" id="8yI-m7-P5W"/>
+                            <constraint firstItem="dL3-Ux-AfE" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="30" id="FzU-al-3jg"/>
                             <constraint firstItem="Yuu-E6-NnD" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="30" id="Ghz-rJ-4TP"/>
-                            <constraint firstItem="Yuu-E6-NnD" firstAttribute="top" secondItem="o5h-La-qcO" secondAttribute="bottom" constant="30" id="WO6-yv-PEZ"/>
+                            <constraint firstItem="Yuu-E6-NnD" firstAttribute="top" secondItem="dL3-Ux-AfE" secondAttribute="bottom" constant="30" id="MAF-VB-MJn"/>
+                            <constraint firstItem="dL3-Ux-AfE" firstAttribute="top" secondItem="o5h-La-qcO" secondAttribute="bottom" constant="30" id="WO6-yv-PEZ"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="pRc-Xw-UTP" secondAttribute="bottom" constant="10" id="Xcf-Ed-Sm8"/>
                             <constraint firstItem="pRc-Xw-UTP" firstAttribute="top" secondItem="Php-Ec-PFY" secondAttribute="bottom" constant="30" id="aQK-Ye-Fqq"/>
                             <constraint firstItem="88s-od-59B" firstAttribute="centerY" secondItem="U0K-SW-4ec" secondAttribute="centerY" id="bDy-Wz-Dvl"/>
@@ -220,6 +246,7 @@
                         <outlet property="pauseButton" destination="o5h-La-qcO" id="Ji2-Cu-Hua"/>
                         <outlet property="pauseLabel" destination="88s-od-59B" id="Muz-Ww-fTq"/>
                         <outlet property="soundButton" destination="Yuu-E6-NnD" id="7xK-6c-xig"/>
+                        <outlet property="visualFeedbackButton" destination="dL3-Ux-AfE" id="2hS-UP-LAD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -757,6 +784,9 @@
         <designable name="Yuu-E6-NnD">
             <size key="intrinsicContentSize" width="34" height="25"/>
         </designable>
+        <designable name="dL3-Ux-AfE">
+            <size key="intrinsicContentSize" width="39" height="25.5"/>
+        </designable>
         <designable name="o5h-La-qcO">
             <size key="intrinsicContentSize" width="18" height="25"/>
         </designable>
@@ -771,6 +801,7 @@
         <image name="appicon" width="512" height="512"/>
         <image name="arrow.turn.up.left" catalog="system" width="128" height="99"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="eye" catalog="system" width="128" height="81"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="pause" catalog="system" width="88" height="128"/>
         <image name="speaker.2" catalog="system" width="128" height="90"/>

@@ -18,8 +18,10 @@ enum sliderType : Int{
 }
 
 enum switchTag : Int{
-    case breakout = 0
-    case flappybird = 1
+    case breakoutAudio = 0
+    case flappybirdAudio = 1
+    case breakoutVisual = 2
+    case flappybirdVisual = 3
 }
 
 enum settingsSection : Int, CaseIterable{
@@ -57,10 +59,10 @@ class SettingsTableViewController: UIViewController, UITableViewDelegate, UITabl
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == settingsSection.breakout.rawValue{
-            return 4
+            return 5
         }
         if section == settingsSection.flappyBird.rawValue{
-            return 3
+            return 4
         }
         else{
             return 0
@@ -82,25 +84,32 @@ class SettingsTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0{
+        if indexPath.row == 0 || indexPath.row == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCellWithSwitch.identifier, for: indexPath) as! SettingsTableViewCellWithSwitch
             cell.textLabel!.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             cell.textLabel!.font = UIFont(name: "ARCADECLASSIC", size: 20)
-//            let horizontalConstraint = NSLayoutConstraint(item: cell.textLabel!, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: cell.switch, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0)
-//            cell.textLabel?.addConstraint(horizontalConstraint)
-//            cell.textLabel?.textAlignment = .center
             if indexPath.section == settingsSection.breakout.rawValue{
                 if indexPath.row == 0{
                     cell.textLabel?.text = "Audio feedback"
-                    cell.switch.tag = switchTag.breakout.rawValue
+                    cell.switch.tag = switchTag.breakoutAudio.rawValue
                     cell.switch.setOn(BreakoutSettings.get().isAudioOn, animated: false)
+                }
+                else if indexPath.row == 1{
+                    cell.textLabel?.text = "Visual feedback"
+                    cell.switch.tag = switchTag.breakoutVisual.rawValue
+                    cell.switch.setOn(BreakoutSettings.get().isVisualOn, animated: false)
                 }
             }
             else if indexPath.section == settingsSection.flappyBird.rawValue{
                 if indexPath.row == 0{
                     cell.textLabel?.text = "Audio feedback"
-                    cell.switch.tag = switchTag.flappybird.rawValue
+                    cell.switch.tag = switchTag.flappybirdAudio.rawValue
                     cell.switch.setOn(FlappyBirdSettings.get().isAudioOn, animated: false)
+                }
+                else if indexPath.row == 1{
+                    cell.textLabel?.text = "Visual feedback"
+                    cell.switch.tag = switchTag.flappybirdVisual.rawValue
+                    cell.switch.setOn(FlappyBirdSettings.get().isVisualOn, animated: false)
                 }
             }
             return cell
@@ -111,17 +120,17 @@ class SettingsTableViewController: UIViewController, UITableViewDelegate, UITabl
             cell.textLabel!.font = UIFont(name: "ARCADECLASSIC", size: 20)
             
             if indexPath.section == settingsSection.breakout.rawValue{
-                if indexPath.row == 1{
+                if indexPath.row == 2{
                     cell.textLabel?.text = "Speed"
                     cell.slider.tag = sliderType.breakoutSpeed.rawValue
                     cell.slider.setValue(Float(BreakoutSettings.get().speed), animated: false)
                 }
-                else if indexPath.row == 2{
+                else if indexPath.row == 3{
                     cell.textLabel?.text = "Paddle  width"
                     cell.slider.tag = sliderType.paddleWidth.rawValue
                     cell.slider.setValue(Float(BreakoutSettings.get().paddleWidth), animated: false)
                 }
-                else if indexPath.row == 3{
+                else if indexPath.row == 4{
                     cell.textLabel?.text = "Sensitivity"
                     cell.slider.tag = sliderType.breakoutSensitivity.rawValue
                     cell.slider.setValue(Float(BreakoutSettings.get().sensitivity), animated: false)
@@ -129,12 +138,12 @@ class SettingsTableViewController: UIViewController, UITableViewDelegate, UITabl
                     
             }
             if indexPath.section == settingsSection.flappyBird.rawValue{
-                if indexPath.row == 1{
+                if indexPath.row == 2{
                     cell.textLabel?.text = "Speed"
                     cell.slider.tag = sliderType.flappybirdSpeed.rawValue
                     cell.slider.setValue(Float(FlappyBirdSettings.get().speed), animated: false)
                 }
-                else if indexPath.row == 2{
+                else if indexPath.row == 3{
                     cell.textLabel?.text = "Sensitivity"
                     cell.slider.tag = sliderType.flappybirdSensitivity.rawValue
                     cell.slider.setValue(Float(FlappyBirdSettings.get().sensitivity), animated: false)
@@ -146,12 +155,20 @@ class SettingsTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func switchChanged(_ sender: UISwitch) {
         switch sender.tag {
-        case switchTag.breakout.rawValue:
+        case switchTag.breakoutAudio.rawValue:
             BreakoutSettings.get().setAudioFeedback(newValue: sender.isOn)
             break
             
-        case switchTag.flappybird.rawValue:
+        case switchTag.flappybirdAudio.rawValue:
             FlappyBirdSettings.get().setAudioFeedback(newValue: sender.isOn)
+            break
+            
+        case switchTag.breakoutVisual.rawValue:
+            BreakoutSettings.get().setVisualFeedback(newValue: sender.isOn)
+            break
+            
+        case switchTag.flappybirdVisual.rawValue:
+            FlappyBirdSettings.get().setVisualFeedback(newValue: sender.isOn)
             break
             
         default:
@@ -186,16 +203,5 @@ class SettingsTableViewController: UIViewController, UITableViewDelegate, UITabl
             break
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

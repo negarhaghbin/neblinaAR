@@ -11,6 +11,7 @@ import RealmSwift
 
 class BreakoutSettings: Object {
     @objc dynamic var isAudioOn : Bool = true
+    @objc dynamic var isVisualOn : Bool = true
     @objc dynamic var speed : Double = 1
     @objc dynamic var paddleWidth : Double = 1
     @objc dynamic var sensitivity : Double = 1
@@ -26,6 +27,13 @@ class BreakoutSettings: Object {
         let realm = try! Realm()
         try! realm.write {
             self.isAudioOn = newValue
+        }
+    }
+    
+    func setVisualFeedback(newValue: Bool){
+        let realm = try! Realm()
+        try! realm.write {
+            self.isVisualOn = newValue
         }
     }
     

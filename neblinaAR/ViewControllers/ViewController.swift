@@ -56,6 +56,10 @@ class ViewController: UIViewController{
     @IBOutlet weak var cancelButton: UIButtonX2!
     @IBOutlet weak var soundButton: UIButtonX2!
     @IBOutlet weak var pauseButton: UIButtonX2!
+    @IBOutlet weak var visualFeedbackButton: UIButtonX2!
+    
+    let BOSettings = BreakoutSettings.get()
+    let FBSettings = FlappyBirdSettings.get()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,25 +67,31 @@ class ViewController: UIViewController{
         switch currentGame {
         case .breakOut:
             scene = GameScene(fileNamed:currentLevel)!
-            let audioFeedback = BreakoutSettings.get().isAudioOn
+            
+            let audioFeedback = BOSettings.isAudioOn
+            let visualFeedback = BOSettings.isVisualOn
+            
             audioFeedback ?
                 soundButton.setImage(UIImage(systemName: "speaker.slash"), for: .normal) :
                 soundButton.setImage(UIImage(systemName: "speaker.2"), for: .normal)
             
+            visualFeedback ?
+                visualFeedbackButton.setImage(UIImage(systemName: "eye.slash"), for: .normal) :
+                visualFeedbackButton.setImage(UIImage(systemName: "eye"), for: .normal)
+            
         case .flappyBird:
             scene = FlappyBird(fileNamed: "FlappyBird")!
-            let audioFeedback = FlappyBirdSettings.get().isAudioOn
+            
+            let audioFeedback = FBSettings.isAudioOn
+            let visualFeedback = FBSettings.isVisualOn
+            
             audioFeedback ?
                 soundButton.setImage(UIImage(systemName: "speaker.slash"), for: .normal) :
                 soundButton.setImage(UIImage(systemName: "speaker.2"), for: .normal)
-//            do{
-//                audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "background", ofType: "mp3")!))
-//                audioPlayer.numberOfLoops = -1
-//                audioPlayer.prepareToPlay()
-//            }
-//            catch{
-//                print(error)
-//            }
+            
+            visualFeedback ?
+                visualFeedbackButton.setImage(UIImage(systemName: "eye.slash"), for: .normal) :
+                visualFeedbackButton.setImage(UIImage(systemName: "eye"), for: .normal)
             
         }
         
@@ -137,11 +147,13 @@ class ViewController: UIViewController{
         self.mainButton.imageView?.clipsToBounds = false
         
         
-        self.pauseButton.center = self.soundButton.center
+        self.pauseButton.center = self.visualFeedbackButton.center
+        self.visualFeedbackButton.center = self.soundButton.center
         self.soundButton.center = self.cancelButton.center
         self.cancelButton.center = self.mainButton.center
         
         self.pauseButton.alpha = 0
+        self.visualFeedbackButton.alpha = 0
         self.soundButton.alpha = 0
         self.cancelButton.alpha = 0
         
@@ -151,6 +163,25 @@ class ViewController: UIViewController{
     
 
     // MARK: Menu
+    @IBAction func enableDisableVisual(_ sender: Any) {
+        switch currentGame {
+        case .breakOut:
+            let newValue = !BreakoutSettings.get().isVisualOn
+            BreakoutSettings.get().setVisualFeedback(newValue: newValue)
+            
+            newValue ?
+                visualFeedbackButton.setImage(UIImage(systemName: "eye.slash"), for: .normal) :
+                visualFeedbackButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        case .flappyBird:
+            let newValue = !FlappyBirdSettings.get().isVisualOn
+            FlappyBirdSettings.get().setVisualFeedback(newValue: newValue)
+            newValue ?
+                visualFeedbackButton.setImage(UIImage(systemName: "eye.slash"), for: .normal) :
+                visualFeedbackButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        }
+    }
+    
+    
     @IBAction func muteUnmute(_ sender: Any) {
         
         switch currentGame {
@@ -191,10 +222,15 @@ class ViewController: UIViewController{
                             self.soundButton.transform = CGAffineTransform(translationX: 0, y: 0)
                             self.soundButton.alpha = 1
                             
+                        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
+                            self.visualFeedbackButton.transform = CGAffineTransform(translationX: 0, y: 0)
+                            self.visualFeedbackButton.alpha = 1
+                            
                         
                         UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
                             self.pauseButton.transform = CGAffineTransform(translationX: 0, y: 0)
                             self.pauseButton.alpha = 1
+                        })
                             })
                             
                         })
@@ -210,6 +246,11 @@ class ViewController: UIViewController{
                         
                         self.pauseButton.transform = .identity
                         self.pauseButton.alpha = 0
+                        
+                        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
+                        
+                            self.visualFeedbackButton.transform = .identity
+                            self.visualFeedbackButton.alpha = 0
                      
                         UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseInOut, animations: {
                         
@@ -220,6 +261,7 @@ class ViewController: UIViewController{
                             
                                 self.cancelButton.transform = .identity
                                 self.cancelButton.alpha = 0
+                            })
                             })
                         
                         })
