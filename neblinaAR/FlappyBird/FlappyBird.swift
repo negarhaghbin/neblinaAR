@@ -19,6 +19,8 @@ var time = 0
 var flappyBirdTimer = Timer()
 
 class FlappyBird: SKScene, SKPhysicsContactDelegate {
+    
+    // MARK: - Variables
     var resultsLbl = SKLabelNode()
     var scoreResultLbl = SKLabelNode()
     var scoreLbl = SKLabelNode()
@@ -27,10 +29,11 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
     var arrow = SKSpriteNode()
     
     var said = false
-//    var isAudioFeedbackOn = FlappyBirdSettings.get().isAudioOn
     let upSound = SKAction.playSoundFileNamed("up.mp3", waitForCompletion: true)
     let downSound = SKAction.playSoundFileNamed("down.mp3", waitForCompletion: true)
     
+    
+    // MARK: - SKScene
     override func didMove(to view: SKView) {
         bird = self.childNode(withName: "bird") as! SKSpriteNode
         bird.position = CGPoint(x: 0, y: 0)
@@ -46,16 +49,17 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
       
         setTimer()
-      
-        run(SKAction.repeatForever(
-          SKAction.sequence([
+        
+        var addPipeSeq = SKAction.sequence([
             SKAction.run(addPipe),
             SKAction.wait(forDuration: (2-FlappyBirdSettings.get().speed) * 1.0)
             ])
-        ))
+        
+        run(SKAction.repeatForever(addPipeSeq))
       
     }
     
+    // MARK: - Helpers
     func createResultLabels(){
         resultsLbl = self.childNode(withName: "resultsLabel") as! SKLabelNode
         resultsLbl.position = CGPoint(x: 0, y: 100)
@@ -156,6 +160,8 @@ class FlappyBird: SKScene, SKPhysicsContactDelegate {
         arrow.position.y = bird.position.y
         arrow.position.x = bird.position.x + 80
         arrow.zPosition = 1
+        arrow.xScale = 1.5
+        arrow.yScale = 1.5
         if direction == .up{
             arrow.texture =  SKTexture(imageNamed: "up")
         }

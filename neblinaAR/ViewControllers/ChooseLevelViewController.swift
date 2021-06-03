@@ -19,20 +19,18 @@ enum LevelSceneNames : String{
 
 class ChooseLevelViewController: UIViewController {
 
+    // MARK: - View Controllers
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
+    // MARK: - Actions
     @IBAction func goBack(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
         _ = self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier{
         case "level1":
@@ -63,6 +61,4 @@ class ChooseLevelViewController: UIViewController {
             break
         }
     }
-    
-
 }

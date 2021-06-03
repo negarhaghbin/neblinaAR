@@ -23,6 +23,7 @@ enum Movement{
 
 class GameScene: SKScene {
     
+    // MARK: - Variable
     var blocks :[SKSpriteNode] = [SKSpriteNode]()
     var ball = SKSpriteNode()
     var scoreLbl = SKLabelNode()
@@ -36,6 +37,7 @@ class GameScene: SKScene {
     let leftSound = SKAction.playSoundFileNamed("left.mp3", waitForCompletion: false)
     let rightSound = SKAction.playSoundFileNamed("right.mp3", waitForCompletion: false)
     
+    // MARK: - SKScene
     override func didMove(to view: SKView) {
         startGame()
         
@@ -60,13 +62,54 @@ class GameScene: SKScene {
         self.physicsBody = border
         
         physicsWorld.contactDelegate = self
-        
-//        let showArrow = SKAction.run({()in self.showArrow(direction: .right)})
-//        let wait = SKAction.wait(forDuration: 5)
-//        let removeArrow = SKAction.run({() in self.removeSprite()})
-//        self.run(SKAction.sequence([showArrow, wait, removeArrow]))
     }
     
+    override func update(_ currentTime: TimeInterval) {
+        if ball.position.y < player.position.y - player.size.height / 2{
+            finishGame(result: "You Lost!")
+        }
+        if BreakoutSettings.get().isAudioOn || BreakoutSettings.get().isVisualOn{
+            if (ball.physicsBody?.velocity.dy)! > 0{
+                said = false
+            }
+            if ((ball.physicsBody?.velocity.dy)! < 0) && !said{
+                guard let collision = rayCast(start: ball.position, direction: ball.physicsBody!.velocity.normalized()) else { return }
+                if collision.destination.y < player.position.y {
+                    if paddleMovement(point: collision.destination) == .left{
+                        if BreakoutSettings.get().isAudioOn{
+                            ball.run(leftSound)
+                        }
+                        if BreakoutSettings.get().isVisualOn{
+                            let showArrow = SKAction.run({()in self.showArrow(direction: .left)})
+                            let wait = SKAction.wait(forDuration: 5)
+                            let removeArrow = SKAction.run({() in self.hideSprite()})
+                            self.run(SKAction.sequence([showArrow, wait, removeArrow]))
+                        }
+                        else{
+                            hideSprite()
+                        }
+                    }
+                    else if paddleMovement(point: collision.destination) == .right{
+                        if BreakoutSettings.get().isAudioOn{
+                            ball.run(rightSound)
+                        }
+                        if BreakoutSettings.get().isVisualOn{
+                            let showArrow = SKAction.run({()in self.showArrow(direction: .right)})
+                            let wait = SKAction.wait(forDuration: 5)
+                            let removeArrow = SKAction.run({() in self.hideSprite()})
+                            self.run(SKAction.sequence([showArrow, wait, removeArrow]))
+                        }
+                        else{
+                            hideSprite()
+                        }
+                    }
+                    said = true
+                }
+            }
+        }
+    }
+    
+    // MARK: - Helpers
     func createPaddle(){
         player = self.childNode(withName: "slider") as! SKSpriteNode
         player.position.y = (-self.frame.height/2) + 100
@@ -128,7 +171,8 @@ class GameScene: SKScene {
     func nextLevel()->String{
         var level = getLevel()
         level = level + 1
-        return "BOLevel\(level)"
+        currentLevel = "BOLevel\(level)"
+        return currentLevel
     }
     
     func getLevel()->Int{
@@ -253,51 +297,6 @@ class GameScene: SKScene {
     }
     func hideSprite() {
        arrow.isHidden = true
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        if ball.position.y < player.position.y - player.size.height / 2{
-            finishGame(result: "You Lost!")
-        }
-        if BreakoutSettings.get().isAudioOn || BreakoutSettings.get().isVisualOn{
-            if (ball.physicsBody?.velocity.dy)! > 0{
-                said = false
-            }
-            if ((ball.physicsBody?.velocity.dy)! < 0) && !said{
-                guard let collision = rayCast(start: ball.position, direction: ball.physicsBody!.velocity.normalized()) else { return }
-                if collision.destination.y < player.position.y {
-                    if paddleMovement(point: collision.destination) == .left{
-                        if BreakoutSettings.get().isAudioOn{
-                            ball.run(leftSound)
-                        }
-                        if BreakoutSettings.get().isVisualOn{
-                            let showArrow = SKAction.run({()in self.showArrow(direction: .left)})
-                            let wait = SKAction.wait(forDuration: 5)
-                            let removeArrow = SKAction.run({() in self.hideSprite()})
-                            self.run(SKAction.sequence([showArrow, wait, removeArrow]))
-                        }
-                        else{
-                            hideSprite()
-                        }
-                    }
-                    else if paddleMovement(point: collision.destination) == .right{
-                        if BreakoutSettings.get().isAudioOn{
-                            ball.run(rightSound)
-                        }
-                        if BreakoutSettings.get().isVisualOn{
-                            let showArrow = SKAction.run({()in self.showArrow(direction: .right)})
-                            let wait = SKAction.wait(forDuration: 5)
-                            let removeArrow = SKAction.run({() in self.hideSprite()})
-                            self.run(SKAction.sequence([showArrow, wait, removeArrow]))
-                        }
-                        else{
-                            hideSprite()
-                        }
-                    }
-                    said = true
-                }
-            }
-        }
     }
     
     func paddleMovement(point: CGPoint)->Movement{

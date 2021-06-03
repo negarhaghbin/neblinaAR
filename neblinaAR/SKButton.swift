@@ -16,21 +16,6 @@ enum SKButtonActionType: Int {
     TouchDown, TouchUp
 }
 
-//var isEnabled: Bool = true {
-//    didSet {
-//        if (disabledTexture != nil) {
-//            texture = isEnabled ? defaultTexture : disabledTexture
-//        }
-//    }
-//}
-//var isSelected: Bool = false {
-//    didSet {
-//        texture = isSelected ? selectedTexture : defaultTexture
-//    }
-//}
-
-//var defaultTexture: SKTexture
-//var selectedTexture: SKTexture
 var label: SKLabelNode
 
 required init(coder: NSCoder) {
@@ -38,10 +23,6 @@ required init(coder: NSCoder) {
 }
 
 init() {
-    
-//    self.defaultTexture = defaultTexture
-//    self.selectedTexture = selectedTexture
-//    self.disabledTexture = disabledTexture
     self.label = SKLabelNode(fontNamed: "ARCADECLASSIC");
     let buttonSize = CGSize(width: 200, height: 100)
     super.init(texture: nil, color: UIColor.white, size: buttonSize)
@@ -100,39 +81,17 @@ weak var targetTouchUp: AnyObject?
 weak var targetTouchDown: AnyObject?
 
 override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//    if (!isEnabled) {
-//        return
-//    }
-//    isSelected = true
     if (targetTouchDown != nil && targetTouchDown!.responds(to: actionTouchDown)) {
         UIApplication.shared.sendAction(actionTouchDown!, to: targetTouchDown, from: self, for: nil)
     }
 }
 
 override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
-//    if (!isEnabled) {
-//        return
-//    }
-    
     let touch: AnyObject! = touches.first
     let touchLocation = touch.location(in: parent!)
-    
-//    if (frame.contains(touchLocation)) {
-//        isSelected = true
-//    } else {
-//        isSelected = false
-//    }
-    
 }
 
 override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//    if (!isEnabled) {
-//        return
-//    }
-//
-//    isSelected = false
-    
     if (targetTouchUpInside != nil && targetTouchUpInside!.responds(to: actionTouchUpInside!)) {
         let touch: AnyObject! = touches.first
         let touchLocation = touch.location(in: parent!)

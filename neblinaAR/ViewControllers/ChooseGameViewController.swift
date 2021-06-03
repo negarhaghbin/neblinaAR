@@ -16,12 +16,12 @@ enum Game{
 var currentGame = Game.breakOut
 class ChooseGameViewController: UIViewController {
 
+    // MARK: - View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
+    // MARK: - Actions
     @IBAction func goBack(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
         _ = self.navigationController?.popViewController(animated: true)

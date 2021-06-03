@@ -12,13 +12,21 @@ import AVFoundation
 
 class ViewController: UIViewController{
     
+    // MARK: - IBOutlet
+    @IBOutlet weak var pauseLabel: UILabel!
+    
+    @IBOutlet weak var mainButton: UIButtonX!
+    @IBOutlet weak var cancelButton: UIButtonX2!
+    @IBOutlet weak var soundButton: UIButtonX2!
+    @IBOutlet weak var pauseButton: UIButtonX2!
+    @IBOutlet weak var visualFeedbackButton: UIButtonX2!
+    
+    // MARK: - Variables
     var nebdev : Neblina? {
         didSet {
             nebdev!.delegate = self
         }
     }
-    
-    @IBOutlet weak var pauseLabel: UILabel!
 
     var scene = SKScene()
     let max_count = Int16(15)
@@ -49,21 +57,14 @@ class ViewController: UIViewController{
     var timer = Timer()
     var sensorData = (Float(0.0),Float(0.0),Float(0.0),Float(0.0))
     
-//    var audioPlayer = AVAudioPlayer()
-    
-//    @IBOutlet weak var messageView: UITextView!
-    @IBOutlet weak var mainButton: UIButtonX!
-    @IBOutlet weak var cancelButton: UIButtonX2!
-    @IBOutlet weak var soundButton: UIButtonX2!
-    @IBOutlet weak var pauseButton: UIButtonX2!
-    @IBOutlet weak var visualFeedbackButton: UIButtonX2!
-    
     let BOSettings = BreakoutSettings.get()
     let FBSettings = FlappyBirdSettings.get()
     
+    
+    // MARK: - View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UIApplication.shared.isIdleTimerDisabled = true
         switch currentGame {
         case .breakOut:
             scene = GameScene(fileNamed:currentLevel)!
@@ -105,13 +106,32 @@ class ViewController: UIViewController{
         skView.presentScene(scene)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.mainButton.imageView?.contentMode = .center
+        self.mainButton.imageView?.clipsToBounds = false
+        
+        
+        self.pauseButton.center = self.visualFeedbackButton.center
+        self.visualFeedbackButton.center = self.soundButton.center
+        self.soundButton.center = self.cancelButton.center
+        self.cancelButton.center = self.mainButton.center
+        
+        self.pauseButton.alpha = 0
+        self.visualFeedbackButton.alpha = 0
+        self.soundButton.alpha = 0
+        self.cancelButton.alpha = 0
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    // MARK: - Actions
     @IBAction func quit(_ sender: Any) {
         let alert = UIAlertController(title: "Do you want to quit?", message: "It will exit this session and your progress will be lost.", preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {
             action in
-             //UIApplication.shared.isIdleTimerDisabled = false
-//            self.audioPlayer.stop()
             self.dismiss(animated: true, completion: nil)
             _ = self.navigationController?.popViewController(animated: true)
         }))
@@ -136,29 +156,6 @@ class ViewController: UIViewController{
             pauseButton.setImage(UIImage(systemName: "play"), for: .normal)
         }
         
-        
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.mainButton.imageView?.contentMode = .center
-        self.mainButton.imageView?.clipsToBounds = false
-        
-        
-        self.pauseButton.center = self.visualFeedbackButton.center
-        self.visualFeedbackButton.center = self.soundButton.center
-        self.soundButton.center = self.cancelButton.center
-        self.cancelButton.center = self.mainButton.center
-        
-        self.pauseButton.alpha = 0
-        self.visualFeedbackButton.alpha = 0
-        self.soundButton.alpha = 0
-        self.cancelButton.alpha = 0
-        
-        navigationController?.setNavigationBarHidden(true, animated: false)
-//        audioPlayer.play()
     }
     
 

@@ -31,21 +31,12 @@ enum settingsSection : Int, CaseIterable{
 
 class SettingsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-    }
-    
-    @IBAction func goBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        _ = self.navigationController?.popViewController(animated: true)
     }
 
-    // MARK: - Table view data source
-
+    // MARK: - Table View Controller
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header:UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
 
@@ -151,6 +142,12 @@ class SettingsTableViewController: UIViewController, UITableViewDelegate, UITabl
             }
             return cell
         }
+    }
+    
+    // MARK: - Actions
+    @IBAction func goBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func switchChanged(_ sender: UISwitch) {
